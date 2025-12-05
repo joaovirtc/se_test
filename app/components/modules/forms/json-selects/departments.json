@@ -1,0 +1,470 @@
+{
+    "en": [
+        {
+            "select-department": [
+                {
+                    "value": "17254",
+                    "title": "Account/Finance"
+                },
+                {
+                    "value": "17256",
+                    "title": "Administration"
+                },
+                {
+                    "value": "17258",
+                    "title": "Education & Training"
+                },
+                {
+                    "value": "17260",
+                    "title": "Engineering & Projects"
+                },
+                {
+                    "value": "17262",
+                    "title": "Environmental, health & safety"
+                },
+                {
+                    "value": "17264",
+                    "title": "Human Resources"
+                },
+                {
+                    "value": "17266",
+                    "title": "Information Technology"
+                },
+                {
+                    "value": "17268",
+                    "title": "Legal & Regulatory Affairs"
+                },
+                {
+                    "value": "122",
+                    "title": "Maintenance"
+                },
+                {
+                    "value": "17270",
+                    "title": "Manufacturing"
+                },
+                {
+                    "value": "17272",
+                    "title": "Marketing / Sales"
+                },
+                {
+                    "value": "17274",
+                    "title": "Procurement"
+                },
+                {
+                    "value": "17276",
+                    "title": "Quality Control"
+                },
+                {
+                    "value": "17278",
+                    "title": "Research & Development"
+                },
+                {
+                    "value": "17282",
+                    "title": "Supply Chain & Logistics"
+                },
+                {
+                    "value": "17284",
+                    "title": "Support & Services"
+                },
+                {
+                    "value": "28194",
+                    "title": "Quality Assurance"
+                },
+                {
+                    "value": "28192",
+                    "title": "Operations"
+                }
+            ]
+        }
+    ],
+    "pt-BR": [
+        {
+            "select-department": [
+                {
+                    "value": "17254",
+                    "title": "Contabilidade / Finanças"
+                },
+                {
+                    "value": "17256",
+                    "title": "Administração"
+                },
+                {
+                    "value": "17258",
+                    "title": "Educação e Treinamento"
+                },
+                {
+                    "value": "17260",
+                    "title": "Engenharia e Projetos"
+                },
+                {
+                    "value": "17262",
+                    "title": "Meio Ambiente, Saúde e Segurança"
+                },
+                {
+                    "value": "17264",
+                    "title": "Recursos Humanos"
+                },
+                {
+                    "value": "17266",
+                    "title": "Tecnologia da Informação"
+                },
+                {
+                    "value": "17268",
+                    "title": "Jurídico e Assuntos Regulatórios"
+                },
+                {
+                    "value": "122",
+                    "title": "Manutenção"
+                },
+                {
+                    "value": "17270",
+                    "title": "Produção Industrial"
+                },
+                {
+                    "value": "17272",
+                    "title": "Marketing / Vendas"
+                },
+                {
+                    "value": "17274",
+                    "title": "Procurement"
+                },
+                {
+                    "value": "17276",
+                    "title": "Controle de Qualidade"
+                },
+                {
+                    "value": "17278",
+                    "title": "Pesquisa e Desenvolvimento"
+                },
+                {
+                    "value": "17282",
+                    "title": "Cadeia de Suprimentos e Logística"
+                },
+                {
+                    "value": "17284",
+                    "title": "Suporte e Serviços"
+                },
+                {
+                    "value": "28194",
+                    "title": "Garantia da Qualidade"
+                },
+                {
+                    "value": "28192",
+                    "title": "Operações"
+                }
+            ]
+        }
+    ],
+    "es": [
+        {
+           "select-department": [
+            {
+                "value": "17254",
+                "title": "Contabilidad / Finanzas"
+            },
+            {
+                "value": "17256",
+                "title": "Administración"
+            },
+            {
+                "value": "17258",
+                "title": "Educación y Capacitación"
+            },
+            {
+                "value": "17260",
+                "title": "Ingeniería y Proyectos"
+            },
+            {
+                "value": "17262",
+                "title": "Medio Ambiente, Salud y Seguridad Laboral"
+            },
+            {
+                "value": "17264",
+                "title": "Recursos Humanos"
+            },
+            {
+                "value": "17266",
+                "title": "Tecnología de la información"
+            },
+            {
+                "value": "17268",
+                "title": "Legal y Asuntos Regulatorios"
+            },
+            {
+                "value": "122",
+                "title": "Mantenimiento"
+            },
+            {
+                "value": "17270",
+                "title": "Fabricación"
+            },
+            {
+                "value": "17272",
+                "title": "Marketing / Ventas"
+            },
+            {
+                "value": "17274",
+                "title": "Compras"
+            },
+            {
+                "value": "17276",
+                "title": "Control de Calidad"
+            },
+            {
+                "value": "17278",
+                "title": "Investigación y Desarrollo"
+            },
+            {
+                "value": "17282",
+                "title": "Cadena de Suministro y Logística"
+            },
+            {
+                "value": "17284",
+                "title": "Soporte y Servicios"
+            },
+            {
+                "value": "28194",
+                "title": "Aseguramiento de la Calidad"
+            },
+            {
+                "value": "28192",
+                "title": "Operaciones"
+            }
+        ]
+        }
+    ],
+    "fr": [
+        {
+            "select-department": [
+                {
+                    "value": "17254",
+                    "title": "Comptabilité / Finance"
+                },
+                {
+                    "value": "17256",
+                    "title": "Administration"
+                },
+                {
+                    "value": "17258",
+                    "title": "Éducation et Formation"
+                },
+                {
+                    "value": "17260",
+                    "title": "Ingénierie et Projets"
+                },
+                {
+                    "value": "17262",
+                    "title": "Environnement, Santé et Sécurité"
+                },
+                {
+                    "value": "17264",
+                    "title": "Ressources Humaines"
+                },
+                {
+                    "value": "17266",
+                    "title": "Technologies de l'information"
+                },
+                {
+                    "value": "17268",
+                    "title": "Service Juridique et Affaires Réglementaires"
+                },
+                {
+                    "value": "122",
+                    "title": "Maintenance"
+                },
+                {
+                    "value": "17270",
+                    "title": "Fabrication"
+                },
+                {
+                    "value": "17272",
+                    "title": "Marketing / Ventes"
+                },
+                {
+                    "value": "17274",
+                    "title": "Approvisionnement"
+                },
+                {
+                    "value": "17276",
+                    "title": "Contrôle Qualité"
+                },
+                {
+                    "value": "17278",
+                    "title": "Recherche et Développement"
+                },
+                {
+                    "value": "17282",
+                    "title": "Chaîne d'Approvisionnement et Logistique"
+                },
+                {
+                    "value": "17284",
+                    "title": "Support et Service Client"
+                },
+                {
+                    "value": "28194",
+                    "title": "Assurance Qualité"
+                },
+                {
+                    "value": "28192",
+                    "title": "Opérations"
+                }
+            ]
+        }
+    ],
+    "it": [
+        {
+            "select-department": [
+                {
+                    "value": "17254",
+                    "title": "Contabilità / Finanza"
+                },
+                {
+                    "value": "17256",
+                    "title": "Amministrazione"
+                },
+                {
+                    "value": "17258",
+                    "title": "Istruzione e Formazione"
+                },
+                {
+                    "value": "17260",
+                    "title": "Ingegneria e Progetti"
+                },
+                {
+                    "value": "17262",
+                    "title": "Ambiente, Salute e Sicurezza"
+                },
+                {
+                    "value": "17264",
+                    "title": "Risorse Umane"
+                },
+                {
+                    "value": "17266",
+                    "title": "Tecnologia dell’informazione"
+                },
+                {
+                    "value": "17268",
+                    "title": "Legale e Affari Regolatori"
+                },
+                {
+                    "value": "122",
+                    "title": "Manutenzione"
+                },
+                {
+                    "value": "17270",
+                    "title": "Produzione"
+                },
+                {
+                    "value": "17272",
+                    "title": "Marketing / Vendite"
+                },
+                {
+                    "value": "17274",
+                    "title": "Approvvigionamento"
+                },
+                {
+                    "value": "17276",
+                    "title": "Contrôle Qualité"
+                },
+                {
+                    "value": "17278",
+                    "title": "Recherche et Développement"
+                },
+                {
+                    "value": "17282",
+                    "title": "Chaîne d'Approvisionnement et Logistique"
+                },
+                {
+                    "value": "17284",
+                    "title": "Support et Service Client"
+                },
+                {
+                    "value": "28194",
+                    "title": "Assurance Qualité"
+                },
+                {
+                    "value": "28192",
+                    "title": "Opérations"
+                }
+            ]
+        }
+    ],
+    "de": [
+        {
+           "select-department": [
+                {
+                    "value": "17254",
+                    "title": "Buchhaltung/Finanzen"
+                },
+                {
+                    "value": "17256",
+                    "title": "Verwaltung"
+                },
+                {
+                    "value": "17258",
+                    "title": "Bildung & Ausbildung"
+                },
+                {
+                    "value": "17260",
+                    "title": "Ingenieurwesen & Projekte"
+                },
+                {
+                    "value": "17262",
+                    "title": "Umwelt, Gesundheit & Sicherheit"
+                },
+                {
+                    "value": "17264",
+                    "title": "Personalwesen"
+                },
+                {
+                    "value": "17266",
+                    "title": "Informationstechnologie"
+                },
+                {
+                    "value": "17268",
+                    "title": "Rechtsabteilung und Regulatorische Angelegenheiten"
+                },
+                {
+                    "value": "122",
+                    "title": "Instandhaltung"
+                },
+                {
+                    "value": "17270",
+                    "title": "Fertigung"
+                },
+                {
+                    "value": "17272",
+                    "title": "Marketing / Vertrieb"
+                },
+                {
+                    "value": "17274",
+                    "title": "Einkauf"
+                },
+                {
+                    "value": "17276",
+                    "title": "Qualitätskontrolle"
+                },
+                {
+                    "value": "17278",
+                    "title": "Forschung und Entwicklung"
+                },
+                {
+                    "value": "17282",
+                    "title": "Lieferkette & Logistik"
+                },
+                {
+                    "value": "17284",
+                    "title": "Support & Kundenservice"
+                },
+                {
+                    "value": "28194",
+                    "title": "Qualitätssicherung"
+                },
+                {
+                    "value": "28192",
+                    "title": "Betrieb"
+                }
+            ] 
+        }
+    ]
+}

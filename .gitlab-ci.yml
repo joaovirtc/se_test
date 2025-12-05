@@ -1,0 +1,2 @@
+include:
+  - local: '.workflows/deploy-prod.yml'
