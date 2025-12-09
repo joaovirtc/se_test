@@ -635,7 +635,7 @@ mark {
 
 .embla {
   position: relative;
-  max-width: 1280px;
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
   padding-bottom: 10px;
@@ -651,6 +651,13 @@ mark {
   height: fit-content;
 }
 
+@media (width < 1380px ) {
+
+  .embla {
+    max-width: 970px;
+    margin-top: 4px;
+  }
+}
 @media (width < 1300px ) {
 
   .embla {
