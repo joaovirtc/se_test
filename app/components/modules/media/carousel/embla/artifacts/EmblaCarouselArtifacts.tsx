@@ -204,7 +204,7 @@ const EmblaCarouselArtifacts: React.FC<Props> = (props) => {
           {isVersionLight &&
             <div className='embla__slide' data-hash="book-a-demo">
               <div className="w-full mx-auto flex flex-col md:flex-col justify-between items-center pb-10 custom_zoom_form">
-                <div className="w-full md:w-1/2 grid gap-2 lg:mt-7">
+                <div className="w-full max-w-xl grid gap-2 lg:mt-7">
                   <h2 className="text-coreBlue500 font-semibold text-2xl 2xl:text-4xl">
                     {t_form("title_slide_book_demo")}
                     <span className="text-white bg-transparent">&#128512;</span>
@@ -213,10 +213,10 @@ const EmblaCarouselArtifacts: React.FC<Props> = (props) => {
                     {t_form("desc_slide_book_demo")}
                   </p>
                 </div>
-                <div className="hidden sm:block w-full md:w-1/2">
+                <div className="hidden sm:block w-full max-w-xl">
                   <BookDemoForm />
                 </div>
-                <div className="block sm:hidden w-full custom_zoom_form">
+                <div className="block sm:hidden w-full">
                   <ToggleFormCarousel />
                 </div>
               </div>
