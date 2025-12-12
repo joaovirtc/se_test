@@ -658,9 +658,9 @@ mark {
 @media (width < 1400px ) {
 
   .embla {
-    max-width: 840px;
+    max-width: 860px !important;
     margin-top: 6px;
-    padding: 0px 20px;
+    padding: 0px 30px;
   }
 
   .embla__viewport {
@@ -676,7 +676,7 @@ mark {
   }
 
   .embla__fullscreen {
-    max-width: 800px !important;
+    max-width: 1040px !important;
   }
 
   .embla__viewport {
@@ -703,7 +703,7 @@ mark {
 
 @media (height < 799px) {
   .embla{
-    max-width: 900px;
+    max-width: 830px;
   }
 }
 
