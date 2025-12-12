@@ -660,7 +660,7 @@ mark {
   .embla {
     max-width: 860px !important;
     margin-top: 6px;
-    padding: 0px 30px;
+    padding: 0px 10px;
   }
 
   .embla__viewport {
@@ -693,6 +693,7 @@ mark {
     flex-direction: column;
     justify-content: center;
     height: 100%;
+    padding: 0;
   }
 
   .embla__viewport {
@@ -701,7 +702,7 @@ mark {
 
 }
 
-@media (height < 799px) {
+@media (width < 1400px) and (height < 800px) {
   .embla{
     max-width: 830px;
   }
