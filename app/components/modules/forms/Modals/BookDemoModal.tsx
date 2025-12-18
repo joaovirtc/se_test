@@ -59,7 +59,7 @@ export default function ModalBookDemo() {
                 <RiCloseLine size={22} />
               </button>
             </div>
-            <p className="hidden md:block text-neutral-600 font-medium text-sm mt-2">
+            <p className="hidden md:block text-neutral-600 font-medium text-sm">
               {tr("description")}
             </p>
 

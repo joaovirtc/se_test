@@ -40,7 +40,7 @@ export default function About() {
         }}
         keyboard={true}
         modules={[Mousewheel, Pagination, Keyboard, HashNavigation]}
-        className="mt-5 lg:mt-10 h-[110svh] min-[1400px]:h-[88svh] relative w-full custom-zoom swiper-vertical-about"
+        className="mt-5 h-[110svh] min-[1400px]:h-[88svh] relative w-full custom-zoom swiper-vertical-about"
         breakpoints={{
           320: {
             slidesPerView: 1,
@@ -71,12 +71,12 @@ export default function About() {
             <p className='text-sm md:text-base text-gray-500 leading-[22px] lg:leading-6 font-normal my-3'>
               {t('worldwideOfficeDescription')}
             </p>
-            <div className='grid place-items-center w-full mt-0 h-[40%] md:h-[60%] lg:h-[70%] xl:h-[75%] 2xl:h-[80%]'>
+            <div className='w-full sm:w-[80%] mx-auto mt-10'>
               <Image
                 src={Map}
                 alt='Map'
                 loading='eager'
-                className='mx-auto w-full'
+                className='w-full'
               />
             </div>
           </div>
@@ -100,11 +100,11 @@ export default function About() {
               })}
             </p>
 
-            <div className='grid place-items-center w-full'>
+            <div className='w-full mx-auto max-w-[600px] mt-5'>
               <Image
                 src={ERP}
-                alt='ERP'
-                className='w-[90%] max-w-[650px] mx-auto'
+                alt='ERP Image'
+                className='mx-auto custom-zoom w-full'
               />
             </div>
           </div>

@@ -153,12 +153,12 @@ export default async function Page(props: { params: Promise<Props> }) {
         <>
             <UpdateLocalizationsData data={languageSelector} path={"/industries/[slug]"} catSlug="" />
             {appVersion === "true" ? (
-                <div className='w-full mt-10 mx-auto max-w-4xl 2xl:max-w-6xl flex gap-7 items-center flex-col xl:flex-row min-h-[80vh]'>
-                    <div className='w-full xl:w-1/2 grid gap-4'>
+                <section className='w-full mt-10 pb-10 mx-auto max-w-4xl 2xl:max-w-6xl flex gap-7 items-center flex-col xl:flex-row min-h-[80vh]'>
+                    <div className='w-full xl:w-1/2 grid gap-0'>
                         <Image className='max-w-[50px] lg:max-w-[60px]' src={`${industry?.attributes.icon.data.attributes.url}`} alt={""} width={80} height={80} />
-                        <h1 className='text-xl md:text-2xl 2xl:text-4xl font-bold tracking-tighter text-zinc-900'>{industry?.attributes.title}</h1>
+                        <h1 className='text-xl md:text-2xl 2xl:text-4xl font-bold tracking-tighter text-zinc-900 mb-3'>{industry?.attributes.title}</h1>
                         <p className='text-sm 2xl:text-base text-gray-600 font-normal'>{industry?.attributes.banner_desc}</p>
-                        <div className="flex gap-8 mb-4">
+                        <div className="flex gap-8 my-4">
                             {sectionMeetTheSolution &&
                                 <Link
                                     href={`${industry?.attributes.slug}/${sectionMeetTheSolution.slug}`}
@@ -232,16 +232,15 @@ export default async function Page(props: { params: Promise<Props> }) {
                             loading='eager'
                         />
                     </div>
-                </div>
+                </section>
             ) : (
-                <section className='w-full mt-4 pb-10 space-y-4 mx-auto max-w-7xl'>
+                <section className='w-full mt-4 pb-10 space-y-1 2xl:space-y-3 mx-auto max-w-7xl flex flex-col items-center h-full'>
                     <div className="flex w-full items-center gap-x-4 flex-wrap">
                         <Image className='max-w-[50px] lg:max-w-[60px]' src={`${industry?.attributes.icon.data.attributes.url}`} alt={""} width={80} height={80} />
                         <h1 className='text-xl md:text-2xl 2xl:text-3xl font-bold tracking-tighter pb-1 text-zinc-900'>{industry?.attributes.title}</h1>
-                        {/* <p>{solution?.attributes.banner_desc}</p> */}
                     </div>
 
-                    <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-3 place-items-center gap-4">
+                    <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-3 gap-4 place-items-center justify-between h-full">
                         {industry.attributes.sections_demo
                             .filter((section) => section.show_in_demo_light !== true)
                             .map((section, index) => {
@@ -263,7 +262,7 @@ export default async function Page(props: { params: Promise<Props> }) {
                                                         (max-width: 768px) 50vw, 
                                                         (max-width: 1024px) 33vw, 
                                                         25vw"
-                                                    className="object-contain transition-transform duration-200 hover:scale-105 z-10"
+                                                    className="object-contain transition-transform duration-200 hover:scale-105 z-4"
                                                     loading={index < 4 ? 'eager' : 'lazy'}
                                                     quality={85}
                                                     placeholder="blur"
@@ -274,11 +273,11 @@ export default async function Page(props: { params: Promise<Props> }) {
                                             <div className="relative w-full mx-auto justify-between aspect-video overflow-hidden ">
                                                 <GuideFlow 
                                                     flowId={guideFlowArtifact.guideflow_id} 
-                                                    className="border"
+                                                    className="border !w-full"
                                                 />
                                                 <Link
                                                     href={`${industry.attributes.slug}/${section.slug}`}
-                                                    className="absolute inset-0 z-20 cursor-pointer"
+                                                    className="absolute inset-0 z-4 cursor-pointer"
                                                     aria-label={section.title}
                                                 />
                                             </div>

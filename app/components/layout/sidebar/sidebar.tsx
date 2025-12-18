@@ -40,7 +40,7 @@ export default async function Sidebar() {
         </div>
         <label
           htmlFor="sidebar-toggle"
-          className={` overlay-sidebar fixed inset-0 bg-linear-to-b from-black/58 to-black/73 backdrop-blur-xs bg-opacity-50 z-10 transition-opacity`}
+          className={` overlay-sidebar fixed inset-0 bg-linear-to-b from-black/58 to-black/73 backdrop-blur-xs bg-opacity-50 z-40 transition-opacity`}
         ></label>
         <div
           className={`sidebar h-screen top-0 fixed z-40 w-[290px] md:w-[350px] 2xl:w-[387px] h-full bg-[#f5f5f7] p-4 transition-transform transform `}

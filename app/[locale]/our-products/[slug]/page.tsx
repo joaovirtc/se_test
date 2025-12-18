@@ -160,11 +160,11 @@ export default async function Page(props: { params: Promise<Props> }) {
             <UpdateLocalizationsData data={languageSelector} path={"/our-products/[slug]"} catSlug="" />
             {appVersion === "true" ? (
                 <section className='w-full mt-10 mx-auto max-w-4xl 2xl:max-w-6xl flex gap-5 items-center flex-col xl:flex-row min-h-[80vh]'>
-                    <div className='w-full xl:w-1/2 grid gap-3'>
+                    <div className='w-full xl:w-1/2 grid gap-0'>
                         <Image className='w-[50%] max-w-[60px] md:w-full md:max-w-[80px] h-auto textGradient' src={`${solution?.attributes.icon.data.attributes.url}`} alt={""} width={80} height={80} />
-                        <h1 className='text-xl md:text-2xl 2xl:text-4xl font-bold tracking-tighter text-zinc-900'>{solution?.attributes.title}</h1>
+                        <h1 className='text-xl md:text-2xl 2xl:text-4xl font-bold tracking-tighter text-zinc-900 mb-3'>{solution?.attributes.title}</h1>
                         <p className='text-sm 2xl:text-base text-gray-600 font-normal'>{solution?.attributes.banner_desc}</p>
-                        <div className="flex flex-wrap gap-x-8 gap-y-2 mb-4 w-full">
+                        <div className="flex flex-wrap gap-x-8 gap-y-2 my-4 w-full">
                             {sectionMeetTheSolution &&
                                 <Link
                                     href={`${solution?.attributes.slug}/${sectionMeetTheSolution.slug}`}
@@ -235,7 +235,6 @@ export default async function Page(props: { params: Promise<Props> }) {
                     <div className="flex w-full items-center gap-x-2 flex-wrap">
                         <Image className='w-[50%] max-w-[60px]' src={`${solution?.attributes.icon.data.attributes.url}`} alt={""} width={80} height={80} />
                         <h1 className='text-xl md:text-2xl 2xl:text-3xl font-bold tracking-tighter text-zinc-900'>{solution?.attributes.title}</h1>
-                        {/* <p>{solution?.attributes.banner_desc}</p> */}
                     </div>
 
                     <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-3 gap-4 place-items-center justify-between h-full">
@@ -259,7 +258,7 @@ export default async function Page(props: { params: Promise<Props> }) {
                                                             (max-width: 768px) 50vw, 
                                                             (max-width: 1024px) 33vw, 
                                                             25vw"
-                                                    className="object-contain transition-transform duration-200 hover:scale-105 z-10"
+                                                    className="object-contain transition-transform duration-200 hover:scale-105 z-5"
                                                     loading={index < 4 ? 'eager' : 'lazy'}
                                                     quality={85}
                                                     placeholder="blur"
