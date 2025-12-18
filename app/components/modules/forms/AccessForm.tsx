@@ -7,7 +7,7 @@ import { COOKIE_KEYS } from "@/app/constants/cookies";
 import { RiExternalLinkLine } from "@remixicon/react";
 import { useRouter } from "next/navigation";
 
-const TOKEN_USD24K = process.env.NEXT_PUBLIC_FULL_ACCESS_TOKEN_USD24K;
+const TOKEN_USD24K = "ec621fa4f5325891ed84d9f0142c70fa39f4961934857";
 
 const AccessForm = () => {
     const [formData, setFormData] = useState({ token: '' });
