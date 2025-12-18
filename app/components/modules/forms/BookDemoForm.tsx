@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, FormEvent, useRef, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import Input from "@/app/components/system/input/input";
@@ -23,27 +25,16 @@ interface FormData {
     descriçao?: string,
     utm?: string,
     locale?: string
-    pagina_anterior_a_conversao?:string;
+    pagina_anterior_a_conversao?:string | null;
 
 }
 
-let previousPage = null;
-  if (typeof window !== "undefined") {
-    const history = JSON.parse(sessionStorage.getItem("history") || "[]");
-    if (history.length > 1) {
-      previousPage = history[history.length - 2];
-    } else if (history.length === 1) {
-      previousPage = history[0];
-    } else {
-      previousPage = null;
-    }
-  }
-
-
 const BookDemoForm = () => {
-
     const locale = useLocale()
     const UTM = getUTM();
+
+    // ✅ SOLUÇÃO: Calcular dentro do componente com useEffect
+    const [previousPage, setPreviousPage] = useState<string | null>(null);
 
     const [formData, setFormData] = useState<FormData>({
         fonte_do_lead: "Demo",
@@ -57,14 +48,37 @@ const BookDemoForm = () => {
         qtd_funcionarios: "",
         pais: "",
         tempo_de_compra: "",
-        origin_page: `Presentation Request > ${document?.title} - ${window.location.origin}${window.location.pathname}`,
-        descriçao: "",
+        origin_page: typeof window !== "undefined"  ? `Presentation Request > ${document?.title} - ${window.location.origin}${window.location.pathname}`: "",
         utm: `${UTM}`,
         locale: locale,
-        pagina_anterior_a_conversao: previousPage
+        pagina_anterior_a_conversao: null // Será atualizado pelo useEffect
     });
+
+    useEffect(() => {
+        if (typeof window === "undefined") return;
+        
+        const history = JSON.parse(sessionStorage.getItem("history") || "[]");
+        
+        let prevPage = null;
+        if (history.length > 1) {
+            prevPage = history[history.length - 2];
+        } else if (history.length === 1) {
+            prevPage = history[0];
+        }
+        
+        setPreviousPage(prevPage);
+        
+        setFormData(prev => ({
+            ...prev,
+            pagina_anterior_a_conversao: prevPage
+        }));
+
+        // console.log("📍 Previous page atualizada:", prevPage);
+    }, []);
+    
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -96,7 +110,7 @@ const BookDemoForm = () => {
             origin_page: "",
         });
     };
-
+    
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
@@ -186,7 +200,7 @@ const BookDemoForm = () => {
 
     return (
         <form onSubmit={handleSubmit} className="w-full mt-4 space-y-2 2xl:space-y-3">
-            <div className="height-calc-form overflow-y-scroll space-y-2 2xl:space-y-3">
+            <div className="height-calc-form overflow-y-scroll space-y-2">
                 <div className="space-y-2">
                     <Input
                         type="text"
@@ -208,13 +222,13 @@ const BookDemoForm = () => {
                     />
                 </div>
                 <div className="w-full flex flex-col md:flex-row gap-2 ">
-                    <div className="space-y-2 w-full md:w-1/2 relative">
+                    <div className="space-y-0 w-full md:w-1/2 relative">
                         <PhoneField
                             placeholder={t("labelPhone")}
                             value={formData.telefone}
                             name="phone"
                             onChange={handlePhoneChange}
-                            className="!py-[24px] !text-sm 2xl:!text-base "
+                            className="!py-[22px]"
                         />
                         {/* Input camuflado (não hidden) para ativar validação nativa */}
                         <input
@@ -241,7 +255,7 @@ const BookDemoForm = () => {
                 </div>
                 <div className="w-full flex flex-col md:flex-row gap-2">
                     <div className="space-y-2 w-full md:w-1/2">
-                        <select required name="senioridade" onChange={handleSelectChange} id="" className="border cursor-pointer w-full outline-hidden border-slate-300 rounded-xl p-3 text-sm 2xl:text-base font-normal transition-colors hover:border-blue-200 focus:border-coreBlue500">
+                        <select required name="senioridade" onChange={handleSelectChange} id="" className="border cursor-pointer w-full outline-hidden border-slate-300 rounded-xl p-3 text-sm font-normal transition-colors hover:border-blue-200 focus:border-coreBlue500">
                             <option disabled selected value="" >{t('labelPosition')}</option>
                             <option value="8396">{t('ceo_clevel')}</option>
                             <option value="8392">{t('director')}</option>
@@ -255,7 +269,7 @@ const BookDemoForm = () => {
                         </select>
                     </div>
                     <div className="space-y-2 w-full md:w-1/2">
-                        <select required name="departamento" onChange={handleSelectChange} id="" className="border cursor-pointer w-full outline-hidden border-slate-300 rounded-xl p-3 text-sm 2xl:text-base font-normal transition-colors hover:border-blue-200 focus:border-coreBlue500">
+                        <select required name="departamento" onChange={handleSelectChange} id="" className="border cursor-pointer w-full outline-hidden border-slate-300 rounded-xl p-3 text-sm font-normal transition-colors hover:border-blue-200 focus:border-coreBlue500">
                             <option disabled selected value="">{t('labelDepartament')}</option>
                             {departmentsOptions?.map((departament, index) => (
                                 <option key={index} value={departmentsOptionsEnglish![index].value}>
@@ -268,7 +282,7 @@ const BookDemoForm = () => {
                 </div>
                 <div className="w-full flex flex-col md:flex-row gap-2 ">
                     <div className="space-y-2 w-full md:w-1/2">
-                        <select required name="segmento" onChange={handleSelectChange} id="" className="border cursor-pointer w-full outline-hidden border-slate-300 rounded-xl p-3 text-sm 2xl:text-base font-normal transition-colors hover:border-blue-200 focus:border-coreBlue500">
+                        <select required name="segmento" onChange={handleSelectChange} id="" className="border cursor-pointer w-full outline-hidden border-slate-300 rounded-xl p-3 text-sm font-normal transition-colors hover:border-blue-200 focus:border-coreBlue500">
                             <option disabled selected value="">{t('labelIndustrie')}</option>
                             <option value="100000001">{t_industrie('aerospaceDefense')}</option>
                             <option value="100000004">{t_industrie('agribusiness')}</option>
@@ -296,7 +310,7 @@ const BookDemoForm = () => {
                         </select>
                     </div>
                     <div className="space-y-2 w-full md:w-1/2">
-                        <select required name="pais" onChange={handleSelectChange} id="" className="border cursor-pointer w-full outline-hidden border-slate-300 rounded-xl p-3 text-sm 2xl:text-base font-normal transition-colors hover:border-blue-200 focus:border-coreBlue500">
+                        <select required name="pais" onChange={handleSelectChange} id="" className="border cursor-pointer w-full outline-hidden border-slate-300 rounded-xl p-3 text-sm font-normal transition-colors hover:border-blue-200 focus:border-coreBlue500">
                             <option disabled selected value="">{t('labelCountrie')}</option>
                             {countryOptions?.map((country, index) => (
                                 <option key={index} value={countryOptionsEnglish![index].title}>
@@ -307,7 +321,7 @@ const BookDemoForm = () => {
                     </div>
                 </div>
                 <div className="space-y-2">
-                    <select required name="qtd_funcionarios" onChange={handleSelectChange} id="" className="border cursor-pointer w-full outline-hidden border-slate-300 rounded-xl p-3 text-sm 2xl:text-base font-normal transition-colors hover:border-blue-200 focus:border-coreBlue500">
+                    <select required name="qtd_funcionarios" onChange={handleSelectChange} id="" className="border cursor-pointer w-full outline-hidden border-slate-300 rounded-xl p-3 text-sm font-normal transition-colors hover:border-blue-200 focus:border-coreBlue500">
                         <option disabled selected value="">{t('labelEmployess')}</option>
                         <option value="1">{t('0To10')}</option>
                         <option value="2">{t('11To49')}</option>
@@ -318,7 +332,7 @@ const BookDemoForm = () => {
                     </select>
                 </div>
                 <div className="space-y-2">
-                    <select required name="tempo_de_compra" onChange={handleSelectChange} id="" className="border cursor-pointer w-full outline-hidden border-slate-300 rounded-xl p-3 text-sm 2xl:text-base font-normal transition-colors hover:border-blue-200 focus:border-coreBlue500">
+                    <select required name="tempo_de_compra" onChange={handleSelectChange} id="" className="border cursor-pointer w-full outline-hidden border-slate-300 rounded-xl p-3 text-sm font-normal transition-colors hover:border-blue-200 focus:border-coreBlue500">
                         <option disabled selected value="">{t('labelImplementation')}</option>
                         <option value="1">{t('immediately')}</option>
                         <option value="2">{t('1To3Months')}</option>

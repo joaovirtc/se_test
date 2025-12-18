@@ -71,7 +71,7 @@ export default function ModalAccess() {
                                {t('forCollaborators')} - <button onClick={toggleShowAccess} className="text-coreBlue500 cursor-pointer font-semibold hover:underline">{t('clickHere')}</button>
                             </p>
                         </div>
-                        <p className="text-neutral-600 font-medium text-sm mt-2">
+                        <p className="hidden md:block text-neutral-600 font-medium text-sm mt-2">
                             {t('descriptionAccessFullDemo')}
                         </p>
 

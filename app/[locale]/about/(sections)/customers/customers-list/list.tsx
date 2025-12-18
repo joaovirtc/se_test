@@ -12,7 +12,7 @@ export default function CustomerList({ customers }: CustomerListProps) {
 
   return (
     <ul
-      className={`w-full mt-0 md:mt-2 h-fit overflow-y-auto grid grid-cols-3 place-items-stretch md:grid-cols-4 lg:grid-cols-5 gap-4`}
+      className={`w-full mt-0 md:mt-2 h-fit overflow-y-auto grid grid-cols-3 place-items-stretch md:grid-cols-4 lg:grid-cols-5 gap-0 md:gap-4`}
     >
       {customers.map((customer) => {
         const fileUrl = customer.attributes.file?.data?.attributes?.url;
@@ -46,7 +46,7 @@ export default function CustomerList({ customers }: CustomerListProps) {
                   width={100}
                   height={100}
                   loading="eager"
-                  className="w-[80px] md:w-[90px] lg:w-[100px] 2xl:w-[120px] h-[87px] object-contain grayscale brightness-0"
+                  className="w-[100px] 2xl:w-[120px] h-[87px] object-contain grayscale brightness-0"
                 />
               ) : (
                 <h3 className="text-coreBlue500 text-center plus-jakarta-sans text-sm md:text-lg font-semibold">

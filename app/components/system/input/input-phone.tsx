@@ -50,7 +50,7 @@ const PhoneField = ({
             onChange={onChange}
             onBlur={onBlur}
             placeholder={placeholder}
-            inputClass={`!w-full !pl-12 font-open_sans !text-primary-primary-950 !outline-none border-[1.5px] !rounded-xl transition-colors 
+            inputClass={`!w-full !pl-12 font-open_sans !text-sm !text-primary-primary-950 !outline-none border-[1.5px] !rounded-xl transition-colors 
                             ${hasError ? 'error-phone-input' : ''} ${className}`}
             containerClass="w-full"
             searchClass="!p-2 !text-sm"

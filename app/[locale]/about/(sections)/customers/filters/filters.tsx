@@ -69,14 +69,14 @@ export default function SubcategoryFilter({ categories, selectedSubcategories, o
                             {/* Categoria como botão */}
                             <button
                                 onClick={() => toggleCategory(category.id)}
-                                className={`rounded-lg flex items-center justify-between text-xs md:text-sm cursor-pointer py-1 px-2 plus-jakarta-sans bg-white border hover:border-slate-600 
+                                className={`rounded-lg flex items-center justify-between text-sm cursor-pointer py-1 px-2 plus-jakarta-sans bg-white border hover:border-slate-600 
                                             ${openCategory === category.id ? "border-slate-600 text-black " : "text-neutral-500" } w-full`}
                             >
                                 <span>{category.attributes.name}</span>
                                 {openCategory === category.id ? (
                                     <RiArrowUpSLine size={20} color='#000'  />
                                 ) : (
-                                        <RiArrowDownSLine size={20} color='#757575' />
+                                    <RiArrowDownSLine size={20} color='#757575' />
                                 )}
                             </button>
 
@@ -93,7 +93,7 @@ export default function SubcategoryFilter({ categories, selectedSubcategories, o
                                         {category.attributes.subcategories.data.map((subcategory) => (
                                             <label
                                                 key={subcategory.id}
-                                                className={`flex items-center text-xs md:text-sm hover:bg-gray-100 p-1 rounded-lg cursor-pointer`}
+                                                className={`flex items-center text-sm hover:bg-gray-100 p-1 rounded-lg cursor-pointer`}
                                             >
                                                 <input
                                                     type="checkbox"

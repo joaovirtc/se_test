@@ -33,7 +33,7 @@ const ModalCarouselArtifacts: React.FC<Props> = ({ children, onClose }) => {
       /> */}
 
       <motion.div
-        className="relative h-full w-full flex items-center justify-center p-4 md:p-8 bg-neutral-50"
+        className="relative h-full w-full p-4 md:p-8 bg-neutral-50"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 10 }}

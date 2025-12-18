@@ -15,7 +15,7 @@ interface Props {
 export default function Hexagon({ slug, acronym, name, icon }: Props) {
 
   return (
-    <Link href={`our-products/${slug}`} target="_blank" referrerPolicy="no-referrer">
+    <Link href={`our-products/${slug}`} target="_blank" rel="noopener noreferrer">
       <Tooltip content={name}>
         <motion.div
           className="hexagon-container group"

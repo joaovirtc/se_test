@@ -12,6 +12,9 @@ export interface Artifact {
             data: {
                 attributes: {
                     url: string;
+                    mime:string;
+                    alternativeText:string;
+                    caption:string;
                 };
             }[];
         }

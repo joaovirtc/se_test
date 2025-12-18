@@ -65,7 +65,7 @@ export default async function RootLayout({ children }: Readonly<RootLayoutProps>
       <GoogleAnalytics gaId="G-QT8XHGJEMQ" />
       <GoogleTagManager gtmId="GTM-KMGP3M5" />
       <TrackingAccess version={versionTrackingAccess} />
-      <PreviousPageTracker/>
+      <PreviousPageTracker />
       <main className="h-screen flex overflow-hidden relative">
         <DataProvider>
           <UpdateLocalizationsData data="" path="" catSlug="" />
@@ -85,7 +85,7 @@ export default async function RootLayout({ children }: Readonly<RootLayoutProps>
         color="#00207f"
         initialPosition={0.08}
         crawlSpeed={200}
-        height={5}
+        height={3}
         crawl={true}
         showSpinner={false}
         easing="ease"

@@ -17,7 +17,8 @@ export default function TrackHistory() {
     // Só salva se a URL for diferente da última
     if (last !== fullUrl) {
       history.push(fullUrl);
-      sessionStorage.setItem("history", JSON.stringify(history));
+      sessionStorage.setItem("history", JSON.stringify(history.slice(-5))); // Mantém só as últimas 5 entradas
+      
     }
 
     // console.log(sessionStorage.getItem("history"));

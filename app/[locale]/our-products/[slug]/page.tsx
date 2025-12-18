@@ -12,6 +12,9 @@ import certificateGetApp1 from "@/public/certfications/getapp.png"
 import { Metadata } from "next";
 import Link from "next/link";
 import LoadingError from "@/app/components/modules/feedback/loading-error-fallback";
+import { cookies } from "next/headers";
+import { COOKIE_KEYS } from "@/app/constants/cookies";
+import { Artifact } from "@/app/types/artifact";
 
 interface Props {
     locale: string
@@ -59,6 +62,8 @@ export async function generateMetadata(props: { params: Promise<Props> }): Promi
 export default async function Page(props: { params: Promise<Props> }) {
     const { locale, slug } = await props.params
     const t = await getTranslations('otherTranslations');
+    const cookieStore = await cookies();
+    const appVersion = cookieStore.get(COOKIE_KEYS.VERSION)?.value;
 
     let solution: Solution | undefined;
     let languageSelector: Solution | undefined;
@@ -67,12 +72,14 @@ export default async function Page(props: { params: Promise<Props> }) {
         [solution, languageSelector] = await Promise.all([
             fetchData<Solution>(`produtos/${slug}`, locale, {
                 populate: [
-                    "icon", 
-                    "title", 
-                    "banner_desc", 
-                    "action_link", 
-                    "sections_demo"
-                ]
+                    "icon",
+                    "title",
+                    "banner_desc",
+                    "action_link",
+                    "sections_demo",
+                    "sections_demo.artifacts",
+                    "sections_demo.artifacts.media",
+                ],
             }),
             fetchData<Solution>(`produtos/${slug}`, locale, {
                 fields: ["titlepage", "title", "slug", "locale"],
@@ -93,104 +100,183 @@ export default async function Page(props: { params: Promise<Props> }) {
     async function getFrameworkImage(sigla: string, locale: string) {
         const localizedImageUrl = `https://demo-softexpert.s3.amazonaws.com/public/framework/${sigla}-${locale}.png`;
         const fallbackImageUrl = `https://demo-softexpert.s3.amazonaws.com/public/framework/${sigla}-en.png`;
-        
+
         try {
-                const res = await fetch(localizedImageUrl, { method: 'HEAD' });
-                if (res.ok) {
-                    return localizedImageUrl;
-                } else {
-                    //console.warn(`Localized image not found: ${localizedImageUrl}. Using fallback image.`);
-                    return fallbackImageUrl;
-                }
-            } catch (error) {
-                console.error(`Error checking image existence: ${error}`);
+            const res = await fetch(localizedImageUrl, { method: 'HEAD' });
+            if (res.ok) {
+                return localizedImageUrl;
+            } else {
+                //console.warn(`Localized image not found: ${localizedImageUrl}. Using fallback image.`);
                 return fallbackImageUrl;
             }
+        } catch (error) {
+            console.error(`Error checking image existence: ${error}`);
+            return fallbackImageUrl;
+        }
     }
 
     let frameworkImage = await getFrameworkImage(
         solution?.attributes.acronym?.toLocaleLowerCase() || "",
         locale
-      );
+    );
+
+    function getFirstImageArtifact(artifacts: Artifact[]) {
+        if (!artifacts || artifacts.length === 0) return null;
+        // Procura primeiro por artifacts que tenham media com imagens
+        for (const artifact of artifacts) {
+            // Verifica se tem media e se media.data existe
+            if (artifact.media?.data && Array.isArray(artifact.media.data)) {
+                // Procura na array de media por imagens
+                const imageMedia = artifact.media.data.find(media => {
+                    const mimeType = media.attributes?.mime?.toLowerCase() || '';
+                    return mimeType.startsWith('image/') && (
+                        mimeType.includes('png') ||
+                        mimeType.includes('jpg') ||
+                        mimeType.includes('jpeg') ||
+                        mimeType.includes('gif') ||
+                        mimeType.includes('webp') ||
+                        mimeType.includes('svg')
+                    );
+                });
+                if (imageMedia) {
+                    return {
+                        ...artifact,
+                        media: {
+                            data: [imageMedia]
+                        }
+                    };
+                }
+            }
+        }
+        return null;
+    }
 
     if (!solution) {
-        return <LoadingError/>
+        return <LoadingError />
     }
 
     return (
         <>
             <UpdateLocalizationsData data={languageSelector} path={"/our-products/[slug]"} catSlug="" />
-            <div className='w-full mt-14 xl:mt-10 mx-auto max-w-4xl 2xl:max-w-6xl flex gap-y-7 items-center flex-col xl:flex-row min-h-[80vh]'>
-                <div className='w-full xl:w-1/2 grid gap-4'>
-                    <Image className='w-[50%] max-w-[60px] md:w-full md:max-w-[80px] h-auto textGradient' src={`${solution?.attributes.icon.data.attributes.url}`} alt={""} width={80} height={80} />
-                    <h1 className='text-3xl md:text-4xl 2xl:text-5xl font-bold tracking-tighter pb-1 text-zinc-900'>{solution?.attributes.title}</h1>
-                    <p className='text-sm 2xl:text-base text-gray-600 font-normal'>{solution?.attributes.banner_desc}</p>
-                    <div className="flex gap-8 mb-4">
-                        {sectionMeetTheSolution &&
-                            <Link
-                                href={`${solution?.attributes.slug}/${sectionMeetTheSolution.slug}`}
-                                className="primary-button plus-jakarta-sans"
-                            >
-                                {sectionMeetTheSolution.title} <RiArrowRightLine size={21} />
-                            </Link>
-                        }
-                        <label htmlFor="modal-toggle" className="third-button plus-jakarta-sans">
-                            <RiPlayCircleLine size={30} className="animate-none" />
-                            {t('watchVideo')}
+            {appVersion === "true" ? (
+                <section className='w-full mt-10 mx-auto max-w-4xl 2xl:max-w-6xl flex gap-5 items-center flex-col xl:flex-row min-h-[80vh]'>
+                    <div className='w-full xl:w-1/2 grid gap-3'>
+                        <Image className='w-[50%] max-w-[60px] md:w-full md:max-w-[80px] h-auto textGradient' src={`${solution?.attributes.icon.data.attributes.url}`} alt={""} width={80} height={80} />
+                        <h1 className='text-xl md:text-2xl 2xl:text-4xl font-bold tracking-tighter text-zinc-900'>{solution?.attributes.title}</h1>
+                        <p className='text-sm 2xl:text-base text-gray-600 font-normal'>{solution?.attributes.banner_desc}</p>
+                        <div className="flex flex-wrap gap-x-8 gap-y-2 mb-4 w-full">
+                            {sectionMeetTheSolution &&
+                                <Link
+                                    href={`${solution?.attributes.slug}/${sectionMeetTheSolution.slug}`}
+                                    className="primary-button plus-jakarta-sans"
+                                >
+                                    {sectionMeetTheSolution.title} <RiArrowRightLine size={21} />
+                                </Link>
+                            }
+                            <label htmlFor="modal-toggle" className="third-button plus-jakarta-sans">
+                                <RiPlayCircleLine size={30} className="animate-none" />
+                                {t('watchVideo')}
+                            </label>
+                        </div>
+                        <input type="checkbox" id="modal-toggle" className="modal-toggle hidden" />
+                        <label htmlFor='modal-toggle' className="modal bg-linear-to-b from-black/48 to-black/73 backdrop-blur-xs fixed w-full h-svh z-50 left-0 top-0 grid place-items-center">
+                            <div className="modal-content w-full h-full p-6 sm:w-3/4 lg:w-2/3 flex flex-col justify-center items-center relative mx-auto">
+                                <div className="max-w-[1320px] w-full flex items-center justify-end mb-2 sm:mb-0">
+                                    <label htmlFor="modal-toggle" className="top-20 -right-2 text-white cursor-pointer transition-colors hover:bg-zinc-950/50 rounded-full p-1">
+                                        <RiCloseLine size={32} />
+                                    </label>
+                                </div>
+                                <iframe
+                                    className='rounded-lg w-full max-w-[1140px] aspect-video'
+                                    src={`${convertYouTubeToEmbed(`${solution?.attributes.action_link}`)}`}
+                                    title="YouTube video player"
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerPolicy="strict-origin-when-cross-origin"
+                                    allowFullScreen
+                                />
+                            </div>
                         </label>
-                    </div>
-                    <input type="checkbox" id="modal-toggle" className="modal-toggle hidden" />
-                    <label htmlFor='modal-toggle' className="modal bg-linear-to-b from-black/48 to-black/73 backdrop-blur-xs fixed w-full h-svh z-50 left-0 top-0 grid place-items-center">
-                        <div className="modal-content w-full h-full p-6 sm:w-3/4 lg:w-2/3 flex flex-col justify-center items-center relative mx-auto">
-                            <div className="max-w-[1320px] w-full flex items-center justify-end mb-2 sm:mb-0">
-                                <label htmlFor="modal-toggle" className="top-20 -right-2 text-white cursor-pointer transition-colors hover:bg-zinc-950/50 rounded-full p-1">
-                                    <RiCloseLine size={32} />
-                                </label>
+                        <div className='space-y-3'>
+                            <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+                                <div className='flex'>
+                                    <RiStarSFill color='#dde100' size={30} className='-ml-1' />
+                                    <RiStarSFill color='#dde100' size={30} className='-ml-1' />
+                                    <RiStarSFill color='#dde100' size={30} className='-ml-1' />
+                                    <RiStarSFill color='#dde100' size={30} className='-ml-1' />
+                                    <RiStarSFill color='#dde100' size={30} className='-ml-1' />
+                                </div>
+                                <p className='text-sm 2xl:text-base text-black font-medium'>{t('labelCertifications')}</p>
                             </div>
-                            <iframe
-                                className='rounded-lg w-full max-w-[1140px] aspect-video'
-                                src={`${convertYouTubeToEmbed(`${solution?.attributes.action_link}`)}`}
-                                title="YouTube video player"
-                                frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerPolicy="strict-origin-when-cross-origin"
-                                allowFullScreen
-                            />
-                        </div>
-                    </label>
-                    <div className='space-y-3'>
-                        <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-                            <div className='flex'>
-                                <RiStarSFill color='#dde100' size={30} className='-ml-1' />
-                                <RiStarSFill color='#dde100' size={30} className='-ml-1' />
-                                <RiStarSFill color='#dde100' size={30} className='-ml-1' />
-                                <RiStarSFill color='#dde100' size={30} className='-ml-1' />
-                                <RiStarSFill color='#dde100' size={30} className='-ml-1' />
+                            <div className='flex justify-start items-center gap-5 flex-wrap w-full'>
+                                <Image src={"https://assets.softexpert.com/software_advice_2025_badge_359d0c3b3f.svg"} alt="certifications Front runners" className='w-[55px] 2xl:w-[85px]' width={60} height={20} />
+                                <Image src={"https://assets.softexpert.com/getapp_2025_badge_27fac46917.svg"} alt="certifications GetApp leaders" className='w-[55px] 2xl:w-[85px]' width={70} height={20} />
+                                <Image src={"https://assets.softexpert.com/capterra_2025_badge_738d4beb98.svg"} alt="certifications CapTerra Shortlist" className='w-[55px] 2xl:w-[85px]' width={90} height={0} />
+                                <Image src={certificateCapterra} alt="certifications/capterra" className='w-[55px] 2xl:w-[85px]' width={77} height={10} />
+                                <Image src={certificateGetApp1} alt="certifications/getapp" className='w-[55px] 2xl:w-[85px]' width={90} height={0} />
+                                <Image src={certificateSoftwareAdvice} alt="certifications/software-advice" className='w-[55px] 2xl:w-[85px]' width={77} height={16} />
+                                <Image src={certificateAWS} alt="certification AWS" className='w-[55px] 2xl:w-[67px]' width={80} height={20} />
                             </div>
-                            <p className='text-sm 2xl:text-base text-black font-medium'>{t('labelCertifications')}</p>
-                        </div>
-                        <div className='flex justify-start items-center gap-5 flex-wrap w-full'>
-                            <Image src={"https://assets.softexpert.com/software_advice_2025_badge_359d0c3b3f.svg"} alt="certifications Front runners" className='w-[55px] 2xl:w-[85px]' width={60} height={20} />
-                            <Image src={"https://assets.softexpert.com/getapp_2025_badge_27fac46917.svg"} alt="certifications GetApp leaders" className='w-[55px] 2xl:w-[85px]' width={70} height={20} />
-                            <Image src={"https://assets.softexpert.com/capterra_2025_badge_738d4beb98.svg"} alt="certifications CapTerra Shortlist" className='w-[55px] 2xl:w-[85px]' width={90} height={0} />
-                            <Image src={certificateCapterra} alt="certifications/capterra" className='w-[55px] 2xl:w-[85px]' width={77} height={10} />
-                            <Image src={certificateGetApp1} alt="certifications/getapp" className='w-[55px] 2xl:w-[85px]' width={90} height={0} />
-                            <Image src={certificateSoftwareAdvice} alt="certifications/software-advice" className='w-[55px] 2xl:w-[85px]' width={77} height={16} />
-                            <Image src={certificateAWS} alt="certification AWS" className='w-[55px] 2xl:w-[77px]' width={80} height={20} />
                         </div>
                     </div>
-                </div>
-                <div className='w-full xl:w-1/2 grid place-items-center'>
-                    <Image
-                        src={frameworkImage}
-                        className='object-cover w-[60%] sm:w-[60%] 2xl:w-[70%]'
-                        alt={`Framework ${solution?.attributes.title}`}
-                        width={380}
-                        height={380}
-                        loading='eager'
-                    />
-                </div>
-            </div>
+                    <div className='w-full xl:w-1/2 grid place-items-center'>
+                        <Image
+                            src={frameworkImage}
+                            className='object-cover w-[60%] sm:w-[60%] 2xl:w-[70%]'
+                            alt={`Framework ${solution?.attributes.title}`}
+                            width={380}
+                            height={380}
+                            loading='eager'
+                        />
+                    </div>
+                </section>
+            ) :
+                <section className='w-full mt-4 pb-10 space-y-1 2xl:space-y-3 mx-auto max-w-7xl flex flex-col items-center h-full'>
+                    <div className="flex w-full items-center gap-x-2 flex-wrap">
+                        <Image className='w-[50%] max-w-[60px]' src={`${solution?.attributes.icon.data.attributes.url}`} alt={""} width={80} height={80} />
+                        <h1 className='text-xl md:text-2xl 2xl:text-3xl font-bold tracking-tighter text-zinc-900'>{solution?.attributes.title}</h1>
+                        {/* <p>{solution?.attributes.banner_desc}</p> */}
+                    </div>
+
+                    <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-3 gap-4 place-items-center justify-between h-full">
+                        {solution.attributes.sections_demo
+                            .filter((section) => section.show_in_demo_light !== true)
+                            .map((section, index) => {
+                                const imageArtifact = getFirstImageArtifact(section.artifacts);
+                                const imageUrl = imageArtifact?.media?.data?.[0]?.attributes?.url;
+
+                                return (
+                                    <article key={index} className="w-full sm:max-w-[220px] 2xl:max-w-[300px] space-y-2">
+                                        {imageUrl && (
+                                            <Link
+                                                href={`${solution.attributes.slug}/${section.slug}`}
+                                                className="relative block w-full mx-auto justify-between aspect-video overflow-hidden border rounded-lg bg-neutral-100">
+                                                <Image
+                                                    src={imageUrl}
+                                                    alt={section.title || 'Preview'}
+                                                    fill
+                                                    sizes="(max-width: 640px) 100vw, 
+                                                            (max-width: 768px) 50vw, 
+                                                            (max-width: 1024px) 33vw, 
+                                                            25vw"
+                                                    className="object-contain transition-transform duration-200 hover:scale-105 z-10"
+                                                    loading={index < 4 ? 'eager' : 'lazy'}
+                                                    quality={85}
+                                                    placeholder="blur"
+                                                    blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2YzZjRmNiIvPjwvc3ZnPg=="
+                                                />
+                                            </Link>
+                                        )}
+                                        <p className="text-sm 2xl:text-base font-medium text-center text-coreBlue500 ">
+                                            {section.title}
+                                        </p>
+                                    </article>
+                                );
+                            })}
+                    </div>
+
+                </section>
+            }
         </>
     )
 }

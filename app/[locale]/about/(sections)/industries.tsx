@@ -47,45 +47,45 @@ export default function Industries() {
         <CardIndustrie
           link={t("linkFoodBeverages")}
           label={t("foodBbeverages")}
-          color="redSolid"
-          bgColor="red"
-          bgColorSolid="redSolid"
+          color="blueSolid"
+          bgColor="blue"
+          bgColorSolid="blueSolid"
           icon={FoodIcon}
           labelLink={t("moreInfo")}
         />
         <CardIndustrie
           link={t("linkArchitecture")}
           label={t("architecture")}
-          color="yellowSolid"
-          bgColor="yellow"
-          bgColorSolid="yellowSolid"
+          color="blueSolid"
+          bgColor="blue"
+          bgColorSolid="blueSolid"
           icon={ArchitectureIcon}
           labelLink={t("moreInfo")}
         />
         <CardIndustrie
           link={t("linkAutomotive")}
           label={t("automotive")}
-          color="orangeSolid"
-          bgColor="orange"
-          bgColorSolid="orangeSolid"
+          color="blueSolid"
+          bgColor="blue"
+          bgColorSolid="blueSolid"
           icon={AutomotiveIcon}
           labelLink={t("moreInfo")}
         />
         <CardIndustrie
           link={t("linkAerospaceDefense")}
           label={t("aerospaceDefense")}
-          color="greenSolid"
-          bgColor="green"
-          bgColorSolid="greenSolid"
+          color="blueSolid"
+          bgColor="blue"
+          bgColorSolid="blueSolid"
           icon={AeroespaceIcon}
           labelLink={t("moreInfo")}
         />
         <CardIndustrie
           link={t("linkEnergy")}
           label={t("energy")}
-          color="roseSolid"
-          bgColor="rose"
-          bgColorSolid="roseSolid"
+          color="blueSolid"
+          bgColor="blue"
+          bgColorSolid="blueSolid"
           icon={EnergyIcon}
           labelLink={t("moreInfo")}
         />
@@ -112,54 +112,54 @@ export default function Industries() {
         <CardIndustrie
           link={t("linkCheminicals")}
           label={t("cheminicals")}
-          color="redSolid"
-          bgColor="red"
-          bgColorSolid="redSolid"
+          color="blueSolid"
+          bgColor="blue"
+          bgColorSolid="blueSolid"
           icon={ChemicalsIcon}
           labelLink={t("moreInfo")}
         />
         <CardIndustrie
           link={t("linkConsumer")}
           label={t("consumer")}
-          color="yellowSolid"
-          bgColor="yellow"
-          bgColorSolid="yellowSolid"
+          color="blueSolid"
+          bgColor="blue"
+          bgColorSolid="blueSolid"
           icon={ConsumerIcon}
           labelLink={t("moreInfo")}
         />
         <CardIndustrie
           link={t("linkEducation")}
           label={t("education")}
-          color="orangeSolid"
-          bgColor="orange"
-          bgColorSolid="orangeSolid"
+          color="blueSolid"
+          bgColor="blue"
+          bgColorSolid="blueSolid"
           icon={EducationIcon}
           labelLink={t("moreInfo")}
         />
         <CardIndustrie
           link={t("linkMiningMetals")}
           label={t("miningMetals")}
-          color="greenSolid"
-          bgColor="green"
-          bgColorSolid="greenSolid"
+          color="blueSolid"
+          bgColor="blue"
+          bgColorSolid="blueSolid"
           icon={MiningIcon}
           labelLink={t("moreInfo")}
         />
         <CardIndustrie
           link={t("linkPharmaceuticalsBiotechnology")}
           label={t("phamaceuticalsBiotechnology")}
-          color="roseSolid"
-          bgColor="rose"
-          bgColorSolid="roseSolid"
+          color="blueSolid"
+          bgColor="blue"
+          bgColorSolid="blueSolid"
           icon={PharmaceuticalsIcon}
           labelLink={t("moreInfo")}
         />
         <CardIndustrie
           link={t("linkServicesConsulting")}
           label={t("servicesConsulting")}
-          color="skySolid"
-          bgColor="sky"
-          bgColorSolid="skySolid"
+          color="blueSolid"
+          bgColor="blue"
+          bgColorSolid="blueSolid"
           icon={ServicesIcon}
           labelLink={t("moreInfo")}
         />
@@ -178,45 +178,45 @@ export default function Industries() {
         <CardIndustrie
           link={t("linkTransportation")}
           label={t("transpotion")}
-          color="redSolid"
-          bgColor="red"
-          bgColorSolid="redSolid"
+          color="blueSolid"
+          bgColor="blue"
+          bgColorSolid="blueSolid"
           icon={TransportationIcon}
           labelLink={t("moreInfo")}
         />
         <CardIndustrie
           link={t("linkHealthcare")}
           label={t("healthCare")}
-          color="yellowSolid"
-          bgColor="yellow"
-          bgColorSolid="yellowSolid"
+          color="blueSolid"
+          bgColor="blue"
+          bgColorSolid="blueSolid"
           icon={HealthcareIcon}
           labelLink={t("moreInfo")}
         />
         <CardIndustrie
           link={t("linkHighTech")}
           label={t("highTech")}
-          color="orangeSolid"
-          bgColor="orange"
-          bgColorSolid="orangeSolid"
+          color="blueSolid"
+          bgColor="blue"
+          bgColorSolid="blueSolid"
           icon={HightTechIcon}
           labelLink={t("moreInfo")}
         />
         <CardIndustrie
           link={t("linkManafacture")}
           label={t("manufacture")}
-          color="greenSolid"
-          bgColor="green"
-          bgColorSolid="greenSolid"
+          color="blueSolid"
+          bgColor="blue"
+          bgColorSolid="blueSolid"
           icon={ManufaturingIcon}
           labelLink={t("moreInfo")}
         />
         <CardIndustrie
           link={t("linkRetail")}
           label={t("retail")}
-          color="roseSolid"
-          bgColor="rose"
-          bgColorSolid="roseSolid"
+          color="blueSolid"
+          bgColor="blue"
+          bgColorSolid="blueSolid"
           icon={RetailIcon}
           labelLink={t("moreInfo")}
         />

@@ -71,7 +71,7 @@ export default function About() {
             <p className='text-sm md:text-base text-gray-500 leading-[22px] lg:leading-6 font-normal my-3'>
               {t('worldwideOfficeDescription')}
             </p>
-            <div className='grid place-items-center w-full mt-0 h-[80%]'>
+            <div className='grid place-items-center w-full mt-0 h-[40%] md:h-[60%] lg:h-[70%] xl:h-[75%] 2xl:h-[80%]'>
               <Image
                 src={Map}
                 alt='Map'

@@ -15,8 +15,9 @@ import CaseCard from "@/app/components/system/cards/card-case"
 import { useTranslations } from "next-intl"
 import useIsMobile from "@/app/utils/useIsMobile"
 import BookDemoForm from '../../../../forms/BookDemoForm'
-import { RiExpandDiagonalLine, RiCollapseDiagonalLine } from '@remixicon/react'
+import { RiExpandDiagonalLine, RiCollapseDiagonalLine, RiHome2Line } from '@remixicon/react'
 import Button from '@/app/components/system/Button'
+import Link from 'next/link'
 
 type Props = {
   slides?: Artifact[]
@@ -204,7 +205,7 @@ const EmblaCarouselArtifacts: React.FC<Props> = (props) => {
           {isVersionLight &&
             <div className='embla__slide' data-hash="book-a-demo">
               <div className="w-full mx-auto flex flex-col md:flex-col justify-between items-center pb-10 custom_zoom_form">
-                <div className="w-full max-w-xl grid gap-2 lg:mt-7">
+                <div className="w-full md:w-1/2 grid gap-2 lg:mt-7">
                   <h2 className="text-coreBlue500 font-semibold text-2xl 2xl:text-4xl">
                     {t_form("title_slide_book_demo")}
                     <span className="text-white bg-transparent">&#128512;</span>
@@ -213,10 +214,10 @@ const EmblaCarouselArtifacts: React.FC<Props> = (props) => {
                     {t_form("desc_slide_book_demo")}
                   </p>
                 </div>
-                <div className="hidden sm:block w-full max-w-xl">
+                <div className="hidden sm:block w-full md:w-1/2">
                   <BookDemoForm />
                 </div>
-                <div className="block sm:hidden w-full">
+                <div className="block sm:hidden w-full custom_zoom_form">
                   <ToggleFormCarousel />
                 </div>
               </div>
@@ -239,6 +240,8 @@ const EmblaCarouselArtifacts: React.FC<Props> = (props) => {
         </div>
 
         <div className="embla__buttons">
+          <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
+          <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
           {onExpandClick && (
             <Button 
               onClick={onExpandClick} 
@@ -246,11 +249,20 @@ const EmblaCarouselArtifacts: React.FC<Props> = (props) => {
               variant='tertiary_button'
               aria-label={isFullscreen ? "Close expand view" : "Expand view"}
               title={isFullscreen ? "Close expand view" : "Expand view"}
-              className='w-10 h-full rounded-full'
+              className='w-10 h-full ml-1 hidden md:block'
             />
           )}
-          <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
-          <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
+          
+          
+          <Link href={"./"} className="flex "> 
+            <Button
+              variant='tertiary_button'
+              icon={<RiHome2Line size={20} />}
+              title={"Back to product overview"}
+            />
+          </Link>
+          
+
         </div>
       </div>
     </div>

@@ -35,10 +35,7 @@ export const LazyLoadImage: React.FC<PropType> = (props) => {
           onLoad={setLoaded}
           src={imgSrc}
           alt={imgAlt}
-          width={0}
-          height={0}
-          sizes="100vw"
-          style={{ width: '100%', height: 'auto' }}
+          fill
           quality={90}
           priority={true}
         />

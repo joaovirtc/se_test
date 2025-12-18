@@ -5,9 +5,10 @@ import LoadingSkeleton from './GuideFlowSkeleton'
 
 interface GuideFlowProps {
   flowId: string;
+  className?: string;
 }
 
-export default function GuideFlow({ flowId }: GuideFlowProps) {
+export default function GuideFlow({ flowId, className }: GuideFlowProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [hasLoaded, setHasLoaded] = useState(false);
 
@@ -34,7 +35,7 @@ export default function GuideFlow({ flowId }: GuideFlowProps) {
       <iframe
         ref={iframeRef}
         src={`https://app.guideflow.com/embed/${flowId}`}
-        className="border-gray-100 object-cover w-[91%] mx-auto h-full rounded-lg"
+        className={`border-gray-100 object-cover w-[91%] mx-auto h-full rounded-lg ${className}`}
         style={{
           display: hasLoaded ? "block" : "none"
         }}
