@@ -46,25 +46,22 @@ interface CardIndutrieProps {
 }
 
 export default function CardIndustrie({ link, label, color, bgColor, bgColorSolid, icon, labelLink = "More info", className }: CardIndutrieProps) {
-    const bgColorClass = bgColorMap[bgColor] || 'bg-blue-500';
-    const bgColorClassSolid = bgColorMap[bgColorSolid] || 'bg-blue-500';
-    const colorClass = colorMap[color] || 'text-white';
+    const bgColorClass ='bg-expertHorizon100';
+    const bgColorClassSolid = 'bg-expertHorizon500';
+    const colorClass = 'text-expertHorizon500';
 
     return (
         <Link href={link} target="_blank" referrerPolicy="no-referrer">
-                <div className={`w-full h-full p-4 rounded-xl gap-y-1 flex flex-col justify-between ${bgColorClass} ${className}`}>
-                    <div className="">
-                        <div className={`hidden md:grid place-items-center rounded-lg w-9 h-9 ${bgColorClassSolid} text-white`}>
+                <div className={`w-full h-full p-2 3xl:p-3 rounded-xl gap-y-1 flex flex-col justify-between border border-transparent ${bgColorClass} ${className} hover:border hover:border-expertHorizon500`}>
+                    <div className="flex gap-x-2">
+                        <div className={`hidden md:grid place-items-center rounded-lg w-9 h-9 shrink-0 ${bgColorClassSolid} text-white`}>
                             <Image src={icon} alt={label} sizes="100%" className="brightness-0 invert" />
                         </div>
-                    <div className="flex gap-x-2 items-center sm:mt-2">
+                        <div className="flex w-fit gap-x-2 items-center">
                             <h2 title={label} className={`text-sm ${colorClass} font-semibold`}>{label}</h2>
                             <RiArrowRightSLine size={14} className={`${colorClass}`}/>
                         </div>
                     </div>
-                    {/* <p className=" hidden 2xl:flex w-fit font-normal text-xs md:text-sm flex items-center justify-center hover:underline">
-                        {labelLink} <RiArrowRightSLine size={14} />
-                    </p> */}
                 </div>
         </Link>
     )

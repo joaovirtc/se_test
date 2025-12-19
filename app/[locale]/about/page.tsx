@@ -104,7 +104,7 @@ export default function About() {
               <Image
                 src={ERP}
                 alt='ERP Image'
-                className='mx-auto custom-zoom w-full'
+                className='mx-auto custom-zoom w-[87%] 3xl:w-[100%]'
               />
             </div>
           </div>
