@@ -1,5 +1,4 @@
 import { getCookie } from "cookies-next";
-import { useEffect, useState } from "react";
 import LangSwitch from "@/app/components/modules/lang-switch";
 import ButtonAccess from "@/app/components/modules/forms/RequestAccessForm"
 import ChangeVersionDemo from "@/app/components/modules/change-version-app";

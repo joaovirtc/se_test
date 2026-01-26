@@ -14,7 +14,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "plugins": [
       {
@@ -38,7 +38,8 @@
     "app/[locale]/our-products/[sigla]/page.tsx",
     "app/[locale]/our-products/[sigla]/[slug]/page.tsx",
     "app/components/artifacts/video.jsx",
-    "app/api/send-email/route.ts"
+    "app/api/send-email/route.ts",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
