@@ -63,7 +63,7 @@ const EmblaCarouselWrapper: React.FC<Props> = ({ slides, cases }) => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
     }
-  }, [isModalOpen]);
+  }, [handleOpenModal]);
 
   const OPTIONS: EmblaOptionsType = {
     slidesToScroll: 1

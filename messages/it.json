@@ -7,7 +7,8 @@
         "spanish": "🇪🇸 Spanish",
         "french": "🇫🇷 French",
         "italian": "🇮🇹 Italian",
-        "german": "🇩🇪 German"
+        "german": "🇩🇪 German",
+        "turkish": "🇹🇷 Turco"
     },
     "Sidebar": {
         "ourProducts": "Prodotti",
@@ -113,7 +114,6 @@
         "labelImplementation": "Quando prevedi di implementare la soluzione?",
         "send": "Invia",
         "successMessage": "Il tuo modulo è stato inviato, grazie per il tuo interesse! Uno dei nostri specialisti ti contatterà presto.",
-        
         "ceo_clevel": "Livello C",
         "director": "Direttore",
         "manager": "Manager",
@@ -123,7 +123,6 @@
         "consultant": "Consulente",
         "assistant": "Assistente / Trainee",
         "student_teacher": "Studente / Insegnante",
-
         "accountingAndFinance": "Contabilità/Finanza",
         "administration": "Amministrazione",
         "educationAndTraining": "Educazione e Formazione",
@@ -218,6 +217,7 @@
         "industries": "Industrie",
         "view_all_results_for": "Vedi tutti i risultati per",
         "preview": "Anteprima",
-        "section" : "Sezioni"
+        "section": "Sezioni",
+        "linkOfflineDemo": "http://demo-softexpert.s3.amazonaws.com/public/download/demo-offline-it.zip"
     }
 }

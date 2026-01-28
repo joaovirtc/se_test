@@ -58,7 +58,7 @@ export default function CardIndustrie({ link, label, color, bgColor, bgColorSoli
                             <Image src={icon} alt={label} sizes="100%" className="brightness-0 invert" />
                         </div>
                         <div className="flex w-fit gap-x-2 items-center">
-                            <h2 title={label} className={`text-sm ${colorClass} font-semibold`}>{label}</h2>
+                            <h2 title={label} className={`text-base ${colorClass} font-semibold`}>{label}</h2>
                             <RiArrowRightSLine size={14} className={`${colorClass}`}/>
                         </div>
                     </div>

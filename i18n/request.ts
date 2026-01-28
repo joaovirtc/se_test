@@ -3,7 +3,7 @@ import { getRequestConfig } from 'next-intl/server';
 import { headers } from 'next/headers';
 
 // Can be imported from a shared config
-const locales = ['en', 'pt-BR', 'es', 'it', 'fr','de'];
+const locales = ['en', 'pt-BR', 'es', 'it', 'fr','de', 'tr'];
 
 export default getRequestConfig(async () => {
   const headersList = await headers();

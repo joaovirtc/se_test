@@ -7,8 +7,6 @@ import { COOKIE_KEYS } from "@/app/constants/cookies";
 import { RiExternalLinkLine } from "@remixicon/react";
 import { useRouter } from "next/navigation";
 
-const TOKEN_USD24K = "ec621fa4f5325891ed84d9f0142c70fa39f4961934857";
-
 const AccessForm = () => {
     const [formData, setFormData] = useState({ token: '' });
     const [isLoading, setIsLoading] = useState(false);
@@ -30,28 +28,37 @@ const AccessForm = () => {
         setSuccessMessage(false);
 
         try {
-            if (formData.token === TOKEN_USD24K) {
-                setCookie(COOKIE_KEYS.AUTH, 'true', {
-                    httpOnly: false,
-                    path: '/',
-                    secure: process.env.NODE_ENV === 'production',
-                    maxAge: 4 * 30 * 24 * 60 * 60,  // 4 months
-                });
-                setCookie(COOKIE_KEYS.VERSION, "false", {
-                    httpOnly: false,
-                    path: '/',
-                    secure: process.env.NODE_ENV === 'production',
-                    maxAge: 4 * 30 * 24 * 60 * 60,  // 4 months
-                });
-                
-                setSuccessMessage(true);
-                setTimeout(() => {
-                    router.refresh();
-                }, 1500);
-            } else {
+            const res = await fetch('/api/validate-access-token', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ token: formData.token }),
+            });
+
+            const data = await res.json();
+
+            if (!res.ok || !data.success) {
                 setErrorMessage('Invalid token');
+                return;
             }
-        } catch (error) {
+
+            setCookie(COOKIE_KEYS.AUTH, 'true', {
+                path: '/',
+                secure: process.env.NODE_ENV === 'production',
+                maxAge: 4 * 30 * 24 * 60 * 60,
+            });
+
+            setCookie(COOKIE_KEYS.VERSION, 'false', {
+                path: '/',
+                secure: process.env.NODE_ENV === 'production',
+                maxAge: 4 * 30 * 24 * 60 * 60,
+            });
+
+            setSuccessMessage(true);
+
+            setTimeout(() => {
+                window.location.reload();
+            }, 1500);
+        } catch {
             setErrorMessage('Error validating token, try again later');
         } finally {
             setIsLoading(false);
@@ -61,9 +68,9 @@ const AccessForm = () => {
     return (
         <form onSubmit={handleSubmit} className="w-full mt-2 space-y-4">
             <p className="text-neutral-500 text-sm flex items-center gap-1">
-                {t('fill_token')} 
-                <a 
-                    className="flex gap-1 items-center text-coreBlue500 cursor-pointer font-semibold hover:underline" 
+                {t('fill_token')}
+                <a
+                    className="flex gap-1 items-center text-coreBlue500 cursor-pointer font-semibold hover:underline"
                     href="https://sesuite.softexpert.com/softexpert/workspace?page=dashboard,8a6e952899e22fe10199e244d33b02b8,8a6e952899e22fe10199e244d3fb02bc&taskCenter=false" target="_blank" rel="noopener noreferrer">
                     {t('portal')} <RiExternalLinkLine size={18} className="text-coreBlue500" />
                 </a>

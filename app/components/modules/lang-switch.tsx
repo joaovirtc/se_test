@@ -75,7 +75,7 @@ export default function LangSwitch() {
 
       {isOpen && (
         <motion.ul
-          className="absolute right-0 mt-1 w-[140px] bg-white border rounded-lg shadow-lg z-10"
+          className="absolute right-0 mt-1 w-[140px] bg-white border rounded-lg shadow-lg shadow-blue-100 z-10"
           initial={{ y: 10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -10, opacity: 0 }}

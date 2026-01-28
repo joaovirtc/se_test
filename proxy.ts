@@ -2,12 +2,12 @@ import createMiddleware from 'next-intl/middleware';
 import { COOKIE_KEYS } from './app/constants/cookies';
 
 const intlMiddleware = createMiddleware({
-  locales: ['en', 'pt-BR', 'es', 'it', 'fr', 'de'],
+  locales: ['en', 'pt-BR', 'es', 'it', 'fr', 'de', 'tr'],
   localeDetection: true,
   defaultLocale: 'en',
 });
 
-export function middleware(req: any) {
+export function proxy(req: any) {
   const cookieValue = req.cookies.get(`${COOKIE_KEYS.VERSION}`);
   if (!cookieValue) {
     const response = intlMiddleware(req);
@@ -26,5 +26,5 @@ export function middleware(req: any) {
 }
 
 export const config = {
-  matcher: ['/', '/(pt-br|pt-BR|en|es|it|fr|de)/:path*'],
+  matcher: ['/', '/(pt-br|pt-BR|en|es|it|fr|de|tr)/:path*'],
 };

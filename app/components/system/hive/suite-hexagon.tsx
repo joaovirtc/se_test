@@ -39,7 +39,7 @@ export default function SuiteHexagon() {
       {isVisible && (
         <div
           onClick={toggleShowVideoModal}
-          className="bg-linear-to-b from-black/48 to-black/73 backdrop-blur-xs fixed w-full h-svh z-50 p-4 left-0 top-0 flex flex-col justify-center items-center"
+          className="bg-linear-to-b from-black/48 to-black/73 backdrop-blur-xs fixed w-full h-full z-50 p-4 left-0 top-0 flex flex-col justify-center items-center"
         >
           <div className="max-w-[1210px] w-full flex items-center justify-end">
             <button
@@ -50,8 +50,8 @@ export default function SuiteHexagon() {
             </button>
           </div>
           <motion.div
-            className="bg-black rounded-lg max-w-[1140px] w-[90%] sm:w-3/4 lg:w-2/3 h-fit md:h-[70%] flex items-center justify-center"
-            initial={{ y: 70, opacity: 0 }}
+            className="bg-black rounded-lg max-w-[1140px] w-full flex items-center justify-center"
+            initial={{ y: 90, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ type: "spring", stiffness: 100, damping: 20 }}
           >
@@ -77,14 +77,14 @@ export default function SuiteHexagon() {
           <div className="vertical suite" data-solucao="suite">
             <span>
               <Image 
-                src={"https://assets.softexpert.com/Soft_Expert_Suite_branco_6fd43429a1.svg"} 
+                src={"https://assets.softexpert.com/new_logo_suite_white_3612120801.png"} 
                 alt="logo-softexpert-suite" 
-                width={60} 
-                height={60}
-                className="mt-1"
+                width={100} 
+                height={100}
+                className="!max-w-[100px]"
               />
             </span>
-            <span className="mt-1">SUITE</span>
+            {/* <span className="mt-1">SUITE</span> */}
           </div>
           <div className="horizontal suite" data-solucao="suite"></div>
           <div className="diagonal suite" data-solucao="suite"></div>

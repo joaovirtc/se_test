@@ -69,7 +69,7 @@ export default function SubcategoryFilter({ categories, selectedSubcategories, o
                             {/* Categoria como botão */}
                             <button
                                 onClick={() => toggleCategory(category.id)}
-                                className={`rounded-lg flex items-center justify-between text-sm cursor-pointer py-1 px-2 plus-jakarta-sans bg-white border hover:border-slate-600 
+                                className={`rounded-lg flex items-center justify-between text-base cursor-pointer py-1 px-2 bg-white border hover:border-slate-600 
                                             ${openCategory === category.id ? "border-slate-600 text-black " : "text-neutral-500" } w-full`}
                             >
                                 <span>{category.attributes.name}</span>

@@ -1,18 +1,19 @@
-import { getCookie } from "cookies-next";
+export const dynamic = 'force-dynamic';
+
+
 import LangSwitch from "@/app/components/modules/lang-switch";
 import ButtonAccess from "@/app/components/modules/forms/RequestAccessForm"
 import ChangeVersionDemo from "@/app/components/modules/change-version-app";
 import { COOKIE_KEYS } from "@/app/constants/cookies";
 import SearchBar from "../../modules/search/searchbar";
-import { getLocale } from "next-intl/server";
 import { cookies } from "next/headers";
+import OfflineDemo from "@/app/components/modules/offline-demo";
 
 export default async function Header() {
-  const locale = getLocale();
+
   const cookieStore = cookies();
 
   const isAuthenticated = (await cookieStore).get(COOKIE_KEYS.AUTH)?.value === 'true';
-  const appVersion = (await cookieStore).get(COOKIE_KEYS.VERSION)?.value;
 
   if (isAuthenticated === null) return null; // evita piscar enquanto carrega
 
@@ -22,6 +23,7 @@ export default async function Header() {
         <SearchBar />
         {!isAuthenticated && <ButtonAccess />}
         <ChangeVersionDemo />
+        <OfflineDemo />
         <LangSwitch />
       </nav>
     </header>

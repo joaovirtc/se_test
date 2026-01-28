@@ -39,11 +39,11 @@ export default async function Page() {
 
   return (
     <main className="flex flex-col items-center justify-between mt-14 w-full main-content overflow-x-hidden">
-      <div className="grid place-items-center w-full max-w-[660px] gap-1">
-        <h1 className="text-3xl lg:text-4xl 2xl:text-5xl text-center font-bold tracking-tighter textGradient p-2">
+      <div className="grid place-items-center w-full max-w-4xl gap-1">
+        <h1 className="text-3xl lg:text-4xl 2xl:text-5xl text-left md:text-center font-bold tracking-tighter textGradient pb-2">
           {t("title")}
         </h1>
-        <p className="text-center text-neutral-500 text-sm 2xl:text-base max-w-[590px]">
+        <p className="text-left sm:text-center text-neutral-500 text-sm 2xl:text-base w-full">
           {t("description")}
         </p>
       </div>

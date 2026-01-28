@@ -1,0 +1,221 @@
+.embla-y {
+  width: 100%;
+  margin: auto;
+  margin-top: 30px;
+  --slide-height-mobile: 100svh;
+  --slide-height: clamp(85svh, 85svh, 85svh);
+  --slide-spacing: 1rem;
+  --slide-size: 100%;
+}
+
+@media (width <= 1300px) {
+  .embla-y {
+    --slide-height: clamp(95svh, 95svh, 95svh);
+  }
+}
+@media (width <= 1024px) {
+  .embla-y {
+    --slide-height: clamp(85svh, 85svh, 85svh);
+  }
+}
+@media (width <= 800px) {
+  .embla-y {
+    --slide-height-mobile: 100svh;
+    --slide-height: clamp(95svh, 95svh, 95svh);
+  }
+}
+
+.embla__viewport-y {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+.embla__container-y {
+  max-width: 996px;
+  margin: auto;
+  display: flex;
+  touch-action: pan-x pinch-zoom;
+  height: calc(var(--slide-spacing) + var(--slide-height));
+  flex-direction: column;
+}
+
+@media (width >= 1600px) {
+  .embla__container-y {
+    max-width: 1152px;
+  }
+}
+@media (width < 632px) {
+  .embla__container-y {
+    height: calc(var(--slide-spacing) + var(--slide-height-mobile));
+  }
+}
+
+.embla__slide-y {
+  flex: 0 0 var(--slide-size);
+  min-height: 0;
+  padding-top: var(--slide-spacing);
+  overflow: hidden;
+}
+.embla__slide__number {
+  border: 0.2rem solid var(--detail-medium-contrast);
+  border-radius: 1.8rem;
+  font-size: 4rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  user-select: none;
+}
+.embla__controls-y {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  justify-content: space-between;
+  gap: 1.2rem;
+  margin-top: 1.8rem;
+}
+.embla__buttons-y {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+  align-items: center;
+}
+.embla__button-y {
+  -webkit-tap-highlight-color: rgba(var(--text-high-contrast-rgb-value), 0.5);
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  touch-action: manipulation;
+  display: inline-flex;
+  text-decoration: none;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  width: 2.2rem;
+  height: 2.2rem;
+  z-index: 1;
+  border-radius: 50%;
+  color: var(--text-body);
+  display: flex;
+  border: 1px solid #00228147;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(90deg);
+}
+
+@media (width <= 1024px) {
+  .embla__button-y {
+    width: 2rem;
+    height: 2rem;
+  }
+
+}
+
+.embla__button--disabled-y {
+  opacity: 30%;
+  cursor: default;
+}
+.embla__button__svg-y {
+  width: 40%;
+  height: 40%;
+}
+
+.embla__button--prev-y {
+  position: absolute;
+  right: 50%;
+  top: 0%;
+}
+.embla__button--next-y {
+  position: absolute;
+  right: 50%;
+  bottom: 5%;
+}
+
+.embla__button-y:disabled {
+  opacity: 30%;
+  cursor: default;
+}
+
+@media (width <= 800px) {
+  
+  .embla__button--prev-y {
+    right: 46%;
+    top: -3%;
+  }
+  .embla__button--next-y {
+    right: 46%;
+    bottom: 0%;
+  }
+}
+
+.embla__dots-y {
+  display: flex;
+  position: absolute;
+  right: 0px;
+  top: 45%;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  /* margin-right: calc((2.6rem - 1.4rem) / 2 * 1); */
+}
+.embla__dot-y {
+  -webkit-tap-highlight-color: rgba(var(--text-high-contrast-rgb-value), 0.5);
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  touch-action: manipulation;
+  display: inline-flex;
+  text-decoration: none;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  margin: 3px;
+  width: 10px;
+  height: 10px;
+  display: flex;
+  background-color: #00208038;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  position: relative;
+}
+
+@media (width < 900px) {
+  .embla__dot-y {
+    width: 8px;
+    height: 8px;
+  }
+
+  .embla__dot-y:before,
+  .embla__dot-y:after {
+    width: 8px !important;
+    height: 8px !important;
+  }
+
+}
+
+.embla__dot-y:before,
+.embla__dot-y:after {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  content: '';
+}
+.embla__dot-y:before {
+  border: 0.2rem solid var(--detail-medium-contrast);
+}
+.embla__dot-y:after {
+  border: 0.2rem solid var(--text-body);
+  opacity: 0;
+}
+.embla__dot--selected-y:after {
+  opacity: 1;
+  background-color: #002080;
+}
+

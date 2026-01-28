@@ -20,16 +20,16 @@ interface FormData {
     nome_da_empresa: string,
     qtd_funcionarios: string,
     pais: string,
-    origin_page:string;
+    origin_page: string;
     tempo_de_compra: string,
     descriçao?: string,
     utm?: string,
     locale?: string
-    pagina_anterior_a_conversao?:string | null;
+    pagina_anterior_a_conversao?: string | null;
 
 }
 
-const BookDemoForm = () => {
+const BookDemoForm = ({ formType = "Form Site Header" }) => {
     const locale = useLocale()
     const UTM = getUTM();
 
@@ -48,7 +48,7 @@ const BookDemoForm = () => {
         qtd_funcionarios: "",
         pais: "",
         tempo_de_compra: "",
-        origin_page: typeof window !== "undefined"  ? `Presentation Request > ${document?.title} - ${window.location.origin}${window.location.pathname}`: "",
+        origin_page: typeof window !== "undefined" ? `${formType} > Presentation Request > ${document?.title} - ${window.location.origin}${window.location.pathname}` : "",
         utm: `${UTM}`,
         locale: locale,
         pagina_anterior_a_conversao: null // Será atualizado pelo useEffect
@@ -56,18 +56,18 @@ const BookDemoForm = () => {
 
     useEffect(() => {
         if (typeof window === "undefined") return;
-        
+
         const history = JSON.parse(sessionStorage.getItem("history") || "[]");
-        
+
         let prevPage = null;
         if (history.length > 1) {
             prevPage = history[history.length - 2];
         } else if (history.length === 1) {
             prevPage = history[0];
         }
-        
+
         setPreviousPage(prevPage);
-        
+
         setFormData(prev => ({
             ...prev,
             pagina_anterior_a_conversao: prevPage
@@ -75,10 +75,10 @@ const BookDemoForm = () => {
 
         // console.log("📍 Previous page atualizada:", prevPage);
     }, []);
-    
+
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    
+
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -110,7 +110,7 @@ const BookDemoForm = () => {
             origin_page: "",
         });
     };
-    
+
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
@@ -151,24 +151,24 @@ const BookDemoForm = () => {
                         event: "form_submit",
                         form_name: "ContactForm",
                         fields: {
-                          name: formData.nome,
-                          email: formData.email,
-                          phone: formData.telefone,
-                          company: formData.nome_da_empresa,
-                          seniority: formData.senioridade,
-                          department: formData.departamento,
-                          industry: formData.segmento,
-                          country: formData.pais,
-                          company_size: formData.qtd_funcionarios,
-                          necessity: formData.tempo_de_compra,
-                          origin_page: `Presentation Request > ${document?.title} - ${window.location.href}`,
-                          lead_source: 174,
-                          pagina_anterior_a_conversao: previousPage
+                            name: formData.nome,
+                            email: formData.email,
+                            phone: formData.telefone,
+                            company: formData.nome_da_empresa,
+                            seniority: formData.senioridade,
+                            department: formData.departamento,
+                            industry: formData.segmento,
+                            country: formData.pais,
+                            company_size: formData.qtd_funcionarios,
+                            necessity: formData.tempo_de_compra,
+                            origin_page: `${formType} > Presentation Request > ${document?.title} - ${window.location.href}`,
+                            lead_source: 174,
+                            pagina_anterior_a_conversao: previousPage
                         },
-                      };
+                    };
 
-                      window.dataLayer = window.dataLayer || [];
-                      window.dataLayer.push(dataLayerFormObject);
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push(dataLayerFormObject);
                 }
 
             } else {
@@ -351,21 +351,21 @@ const BookDemoForm = () => {
                     </p>
                 </div>
             </div>
-                <div className="w-full flex justify-end">
-                    <button
-                        type="submit"
-                        className="plus-jakarta-sans w-full sm:w-fit grid place-items-center cursor-pointer rounded-xl p-3 text-sm md:text-base text-white font-semibold transition-colors bg-coreBlue500 hover:bg-coreBlue800"
-                        disabled={isLoading}
-                    >
-                        {isLoading ? <svg className="text-white animate-spin" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
-                            <path stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" className="opacity-25" d="M32 3C35.8083 3 39.5794 3.75011 43.0978 5.20749C46.6163 6.66488 49.8132 8.80101 52.5061 11.4939C55.199 14.1868 57.3351 17.3837 58.7925 20.9022C60.2499 24.4206 61 28.1917 61 32C61 35.8083 60.2499 39.5794 58.7925 43.0978C57.3351 46.6163 55.199 49.8132 52.5061 52.5061C49.8132 55.199 46.6163 57.3351 43.0978 58.7925C39.5794 60.2499 35.8083 61 32 61C28.1917 61 24.4206 60.2499 20.9022 58.7925C17.3837 57.3351 14.1868 55.199 11.4939 52.5061C8.801 49.8132 6.66487 46.6163 5.20749 43.0978C3.7501 39.5794 3 35.8083 3 32C3 28.1917 3.75011 24.4206 5.2075 20.9022C6.66489 17.3837 8.80101 14.1868 11.4939 11.4939C14.1868 8.80099 17.3838 6.66487 20.9022 5.20749C24.4206 3.7501 28.1917 3 32 3Z"></path>
-                            <path stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" className="bg-white opacity-75" d="M32 3C36.5778 3 41.0906 4.08374 45.1692 6.16256C49.2477 8.24138 52.7762 11.2562 55.466 14.9605C58.1558 18.6647 59.9304 22.9531 60.6448 27.4748C61.3591 31.9965 60.9928 36.6232 59.5759 40.9762"></path>
-                        </svg> : t('send')}
-                    </button>
-                </div>
-                {isSubmitted && <div className="w-full border-green-700 border bg-green-100 rounded-xl p-3 text-green-700 font-medium text-sm">
-                    {t('successMessage')}
-                </div>}
+            <div className="w-full flex justify-end">
+                <button
+                    type="submit"
+                    className="plus-jakarta-sans w-full sm:w-fit grid place-items-center cursor-pointer rounded-xl p-3 text-sm md:text-base text-white font-semibold transition-colors bg-coreBlue500 hover:bg-coreBlue800"
+                    disabled={isLoading}
+                >
+                    {isLoading ? <svg className="text-white animate-spin" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                        <path stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" className="opacity-25" d="M32 3C35.8083 3 39.5794 3.75011 43.0978 5.20749C46.6163 6.66488 49.8132 8.80101 52.5061 11.4939C55.199 14.1868 57.3351 17.3837 58.7925 20.9022C60.2499 24.4206 61 28.1917 61 32C61 35.8083 60.2499 39.5794 58.7925 43.0978C57.3351 46.6163 55.199 49.8132 52.5061 52.5061C49.8132 55.199 46.6163 57.3351 43.0978 58.7925C39.5794 60.2499 35.8083 61 32 61C28.1917 61 24.4206 60.2499 20.9022 58.7925C17.3837 57.3351 14.1868 55.199 11.4939 52.5061C8.801 49.8132 6.66487 46.6163 5.20749 43.0978C3.7501 39.5794 3 35.8083 3 32C3 28.1917 3.75011 24.4206 5.2075 20.9022C6.66489 17.3837 8.80101 14.1868 11.4939 11.4939C14.1868 8.80099 17.3838 6.66487 20.9022 5.20749C24.4206 3.7501 28.1917 3 32 3Z"></path>
+                        <path stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" className="bg-white opacity-75" d="M32 3C36.5778 3 41.0906 4.08374 45.1692 6.16256C49.2477 8.24138 52.7762 11.2562 55.466 14.9605C58.1558 18.6647 59.9304 22.9531 60.6448 27.4748C61.3591 31.9965 60.9928 36.6232 59.5759 40.9762"></path>
+                    </svg> : t('send')}
+                </button>
+            </div>
+            {isSubmitted && <div className="w-full border-green-700 border bg-green-100 rounded-xl p-3 text-green-700 font-medium text-sm">
+                {t('successMessage')}
+            </div>}
         </form>
     );
 };

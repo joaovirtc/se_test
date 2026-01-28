@@ -1,7 +1,6 @@
 import { Industry } from "@/app/types/industry";
 import fetchData from "@/app/utils/fetch";
 import UpdateLocalizationsData from "@/app/utils/localization-lang-data";
-import SlideArtifacts from "@/app/components/ui/slide/artifacts/slider-artifacts-industries";
 import { cookies } from "next/headers";
 import { Metadata } from "next";
 import useIsLaptop from "@/app/utils/useIsLaptop";

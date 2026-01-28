@@ -7,7 +7,8 @@
         "spanish": "🇪🇸 Espanhol",
         "french": "🇫🇷 Francês",
         "italian": "🇮🇹 Italiano",
-        "german": "🇩🇪 Alemão"
+        "german": "🇩🇪 Alemão",
+        "turkish": "🇹🇷 Turco"
     },
     "Sidebar": {
         "ourProducts": "Produtos",
@@ -217,6 +218,7 @@
         "industries": "Indústrias",
         "view_all_results_for": "Ver todos os resultados para",
         "preview": "Pré-visualização",
-        "section" : "Seções"
+        "section": "Seções",
+        "linkOfflineDemo": "http://demo-softexpert.s3.amazonaws.com/public/download/demo-offline-pt-BR.zip"
     }
 }

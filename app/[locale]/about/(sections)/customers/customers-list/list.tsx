@@ -46,7 +46,7 @@ export default function CustomerList({ customers }: CustomerListProps) {
                   width={100}
                   height={100}
                   loading="eager"
-                  className="w-[100px] 2xl:w-[120px] h-[87px] object-contain grayscale brightness-0"
+                  className="w-[110px] 2xl:w-[120px] h-[87px] object-contain grayscale brightness-0"
                 />
               ) : (
                 <h3 className="text-coreBlue500 text-center plus-jakarta-sans text-sm md:text-lg font-semibold">

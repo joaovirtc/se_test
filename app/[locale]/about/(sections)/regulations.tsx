@@ -24,10 +24,11 @@ import regulation21 from "@/public/regulations/iso-55000.jpg"
 import regulation22 from "@/public/regulations/iso-9001.jpg"
 import regulation23 from "@/public/regulations/itil.jpg"
 import regulation24 from "@/public/regulations/pmbok.jpg"
-import regulation25 from "@/public/regulations/sixsigma.jpg"
+import regulation25 from "@/public/regulations/sixsigma.jpg";
+import { useTranslations } from "next-intl";
 
 export default function LogoCarousel() {
-
+  const t = useTranslations('AboutPage');
   const logos = [
     { src: regulation1, alt: "AS-9100" },
     { src: regulation2, alt: "bpmn" },
@@ -58,16 +59,19 @@ export default function LogoCarousel() {
   ]
 
   return (
-    <div className="w-full grid grid-cols-4 lg:grid-cols-5 gap-8 mt-7 2xl:mt-14">
-      {logos.map((logo, index) => (
-        <div key={index} className="flex justify-center">
-          <Image
-            src={logo.src}
-            alt={logo.alt}
-            className="w-16 sm:w-20 md:w-24 lg:w-26"
-          />
-        </div>
-      ))}
+    <div className="">
+      <h2 className='tracking-tighter text-2xl 2xl:text-3xl font-bold'>{t('regulations')}</h2>
+      <div className="w-full grid grid-cols-4 lg:grid-cols-5 gap-8 mt-7 2xl:mt-14">
+        {logos.map((logo, index) => (
+          <div key={index} className="flex justify-center">
+            <Image
+              src={logo.src}
+              alt={logo.alt}
+              className="w-16 sm:w-20 md:w-24 lg:w-26"
+            />
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

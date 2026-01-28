@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { RiArrowDownSLine, RiArrowUpSLine } from '@remixicon/react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { Industry } from '@/app/types/industry';
 import { SectionsDemo } from '@/app/types/sections_demo';
 import { useCookie } from '@/app/utils/get-cookie/client';
@@ -26,9 +26,12 @@ export const TabDropdown = ({ data, sections, defaultActive = false, isComingSoo
     const router = useRouter();
     const locale = useLocale();
     const localizedLink = `/${locale}/${route}/${data.attributes.slug}`;
-    const isActive = pathname.startsWith(localizedLink) || (pathname === `/${locale}/` && defaultActive);
     const CookieVersionDemoValue = useCookie(`${COOKIE_KEYS.VERSION}`) || 'true';
     const isMobile = useIsMobile();
+
+    const isActive = useMemo(() => {
+        return pathname.startsWith(localizedLink) || (pathname === `/${locale}/` && defaultActive);
+    }, [pathname, localizedLink, locale, defaultActive]);
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(defaultActive || isActive);
 
@@ -45,7 +48,7 @@ export const TabDropdown = ({ data, sections, defaultActive = false, isComingSoo
 
     useEffect(() => {
         setIsDropdownOpen(isActive);
-    }, [pathname, localizedLink]);
+    }, [isActive]);
 
     useEffect(() => {
         if (isActive && sidebarContainerRef.current) {

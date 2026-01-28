@@ -1,7 +1,6 @@
 import { Solution } from "@/app/types/solution";
 import fetchData from "@/app/utils/fetch";
 import UpdateLocalizationsData from "@/app/utils/localization-lang-data";
-import SlideArtifacts from "@/app/components/ui/slide/artifacts/slider-artifacts-products";
 import CarouselArtifactsWrapper from "@/app/components/modules/media/carousel/embla/artifacts/EmblaCarouselArtifactsWrapper";
 import { cookies } from "next/headers";
 import { Metadata } from "next";

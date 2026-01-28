@@ -21,7 +21,7 @@ export default function CustomerSection() {
   const [selectedSubcategories, setSelectedSubcategories] = useState<number[]>([]);
   const isMobile = useIsMobile();
   const isLaptop = useIsLaptop();
-  const pageSize = isMobile ? 15 : isLaptop ? 16 :  25;
+  const pageSize = isMobile ? 15 : isLaptop ? 15 :  25;
 
   const { data: casesData, error: casesError, isLoading: casesLoading } = useSWR<{
     data: Case[];
@@ -92,7 +92,8 @@ export default function CustomerSection() {
   }));
 
   return (
-    <div className='h-full flex flex-col pb-10'>
+    <div className='h-full flex flex-col '>
+      <h2 className="tracking-tighter text-2xl 2xl:text-3xl font-bold mb-4">{t('someCustomers')}</h2>
       
       <CustomersFilter
           categories={categoriesWithCases || []}

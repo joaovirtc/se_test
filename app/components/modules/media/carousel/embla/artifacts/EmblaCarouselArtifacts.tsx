@@ -215,7 +215,7 @@ const EmblaCarouselArtifacts: React.FC<Props> = (props) => {
                   </p>
                 </div>
                 <div className="hidden sm:block w-full md:w-1/2">
-                  <BookDemoForm />
+                  <BookDemoForm formType='Form Site Body'/>
                 </div>
                 <div className="block sm:hidden w-full custom_zoom_form">
                   <ToggleFormCarousel />
