@@ -1,6 +1,6 @@
 import Logo from '@/public/logo-colorida.png';
 import './globals.css';
-import Image from 'next/image';
+import Image from 'next/image'
 
 
 const Loading = () => {
