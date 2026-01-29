@@ -105,6 +105,9 @@
 }
 
 @media (width <= 1024px) {
+  .embla__buttons-y {
+    display: none !important;
+  }
   .embla__button-y {
     width: 2rem;
     height: 2rem;

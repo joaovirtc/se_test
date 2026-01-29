@@ -78,7 +78,7 @@ const EmblaCarousel = (props: PropType) => {
         </div>
       </div>
       <div className="embla__controls-y">
-        <div className="embla__buttons-y !hidden">
+        <div className="embla__buttons-y">
           <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
           <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
         </div>
