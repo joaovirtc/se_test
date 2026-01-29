@@ -50,7 +50,7 @@ export default function SliderBigNumbers() {
                         <CardBigNumber number={"1995"} label={t('emerged')} />
                         <CardBigNumber number={"+900"} label={t('employees')} />
                     </div>
-                    <div className='w-full flex flex-col justify-center items-center gap-2 3xl:mt-10 gap-y-2 2xl:gap-y-4 custom-zoom'>
+                    <div className='w-full flex flex-col justify-center items-center gap-2 3xl:mt-10 gap-y-2 2xl:gap-y-4 custom-zoom-mobile'>
                         <div className='flex gap-x-3 relative'>
                             {[0, 1, 2, 3, 4].map((i) => (
                                 <motion.div

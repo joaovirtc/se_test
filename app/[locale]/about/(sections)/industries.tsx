@@ -33,7 +33,7 @@ export default function Industries() {
       <p className="text-[15px] text-gray-500 font-normal mt-2">
         {t("description")}
       </p>
-      <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-2 mt-2 custom-zoom">
+      <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-2 mt-2 custom-zoom-mobile custom-zoom-laptop">
         <CardIndustrie
           link={t("linkAgribusiness")}
           label={t("agribusiness")}

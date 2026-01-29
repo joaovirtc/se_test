@@ -2,19 +2,19 @@
   width: 100%;
   margin: auto;
   --slide-height-mobile: 100svh;
-  --slide-height: clamp(85svh, 85svh, 85svh);
+  --slide-height: 85svh;
   --slide-spacing: 1rem;
   --slide-size: 100%;
 }
 
 @media (width <= 1400px) {
   .embla-y {
-    --slide-height: clamp(95svh, 95svh, 95svh);
+    --slide-height: 99svh;
   }
 }
 @media (width <= 1024px) {
   .embla-y {
-    --slide-height: clamp(85svh, 85svh, 85svh);
+    --slide-height: 85svh;
   }
 }
 @media (width <= 800px) {

@@ -25,7 +25,7 @@ export default function ExtendERP() {
           <Image
             src={ERP}
             alt='ERP Image'
-            className='mx-auto custom-zoom w-[87%] 3xl:w-[100%]'
+            className='mx-auto custom-zoom-mobile w-[87%] 3xl:w-[100%]'
           />
         </div>
       </div>

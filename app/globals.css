@@ -365,7 +365,7 @@
     display: block;
   }
 
-  .custom-zoom {
+  .custom-zoom-mobile {
     zoom: 0.8;
   }
 
@@ -607,7 +607,7 @@ color: #fff;
 
 
 @media (min-width: 999px) and (max-width: 1378px) {
-  .custom-zoom {
+  .custom-zoom-laptop {
     zoom: 0.8;
   }
 }
