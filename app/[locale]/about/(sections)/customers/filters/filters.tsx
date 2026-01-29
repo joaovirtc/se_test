@@ -93,7 +93,7 @@ export default function SubcategoryFilter({ categories, selectedSubcategories, o
                                         {category.attributes.subcategories.data.map((subcategory) => (
                                             <label
                                                 key={subcategory.id}
-                                                className={`flex items-center text-sm hover:bg-gray-100 p-1 rounded-lg cursor-pointer`}
+                                                className={`flex items-center text-xs hover:bg-gray-100 p-1 rounded-lg cursor-pointer`}
                                             >
                                                 <input
                                                     type="checkbox"

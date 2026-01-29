@@ -8,7 +8,7 @@ import BigNumbers from './(sections)/big-numbers'
 import MapSection from './(sections)/map'
 import ExtendERP from './(sections)/erp'
 import Services from './(sections)/services'
-import EmblaCarousel from '@/app/components/modules/media/carousel/embla/y-axis/EmblaCarouselY-Axis'
+import EmblaCarouselYAxis from '@/app/components/modules/media/carousel/embla/y-axis/EmblaCarouselY-Axis'
 import { EmblaOptionsType } from 'embla-carousel'
 
 
@@ -30,14 +30,14 @@ export default function About() {
 
 
   return (
-    <div className='relative'>
-      <EmblaCarousel slides={SLIDES} options={OPTIONS} scrollDelay={350}>
+    <div className='relative mt-1 md:mt-6'>
+      <EmblaCarouselYAxis slides={SLIDES} options={OPTIONS} scrollDelay={450}>
           {SLIDES.map((slide) => (
             <div className="embla__slide-y" key={slide.id}>
               {slide.component}
             </div>
           ))}
-        </EmblaCarousel>
+        </EmblaCarouselYAxis>
     </div>
   );
 }

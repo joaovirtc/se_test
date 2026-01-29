@@ -42,7 +42,7 @@ export default function SliderBigNumbers() {
             <h1 className='tracking-tighter text-2xl xl:text-3xl font-bold'>{t('aboutSoftExpert')}</h1>
             <div className="w-full grid place-items-center">
                 <div className="w-full flex flex-col overflow-hidden pb-2 md:py-3 justify-center items-center gap-y-4 relative mt-4">
-                    <div className='w-[90%] lg:w-full grid grid-cols-2 lg:grid-cols-3 gap-1 mb-0 md:mb-2 place-items-center'>
+                    <div className='w-[94%] lg:w-full grid grid-cols-2 lg:grid-cols-3 gap-1 mb-0 md:mb-2 place-items-center'>
                         <CardBigNumber number={t('3,000')} label={t('customers')} />
                         <CardBigNumber number={t('600k')} label={t('users')} />
                         <CardBigNumber number={"50"} label={t('countries')} />
@@ -50,7 +50,7 @@ export default function SliderBigNumbers() {
                         <CardBigNumber number={"1995"} label={t('emerged')} />
                         <CardBigNumber number={"+900"} label={t('employees')} />
                     </div>
-                    <div className='w-full flex flex-col justify-center items-center gap-2 3xl:mt-10 gap-y-2 2xl:gap-y-4'>
+                    <div className='w-full flex flex-col justify-center items-center gap-2 3xl:mt-10 gap-y-2 2xl:gap-y-4 custom-zoom'>
                         <div className='flex gap-x-3 relative'>
                             {[0, 1, 2, 3, 4].map((i) => (
                                 <motion.div
@@ -113,7 +113,7 @@ export default function SliderBigNumbers() {
                 </div>
 
                 <div className='w-full flex mt-3 justify-center lg:justify-end items-center'>
-                    <Link href={t('linkCompany')} rel="noopener noreferrer" target='_blank' className="text-sm flex mr-3 justify-center items-center gap-2 text-coreBlue500 hover:underline">
+                    <Link href={t('linkCompany')} rel="noopener noreferrer" target='_blank' className="text-base flex mr-3 justify-center items-center gap-2 text-coreBlue500 hover:underline">
                         {t('moreAbout')}
                         <RiArrowRightLine size={20} />
                     </Link>

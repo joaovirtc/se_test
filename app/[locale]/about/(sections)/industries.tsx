@@ -30,10 +30,10 @@ export default function Industries() {
       <h1 className="tracking-tighter text-2xl lg:text-3xl font-bold">
         {t("industries")}
       </h1>
-      <p className="text-base text-gray-500 font-normal mb-3 mt-2">
+      <p className="text-[15px] text-gray-500 font-normal mt-2">
         {t("description")}
       </p>
-      <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-2 mt-6 custom-zoom">
+      <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-2 mt-2 custom-zoom">
         <CardIndustrie
           link={t("linkAgribusiness")}
           label={t("agribusiness")}

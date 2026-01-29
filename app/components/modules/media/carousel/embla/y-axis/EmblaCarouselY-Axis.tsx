@@ -68,7 +68,7 @@ const EmblaCarousel = (props: PropType) => {
   return (
     <div className="embla-y">
       <div className="embla__viewport-y" ref={emblaRef}>
-        <div className="embla__container-y custom-zoom">
+        <div className="embla__container-y">
           {/* {slides.map((slide) => (
             <div className="embla__slide-y overflow-hidden" key={slide.id}>
               {slide.component}
@@ -78,7 +78,7 @@ const EmblaCarousel = (props: PropType) => {
         </div>
       </div>
       <div className="embla__controls-y">
-        <div className="embla__buttons-y">
+        <div className="embla__buttons-y !hidden">
           <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
           <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
         </div>

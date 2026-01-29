@@ -1,14 +1,13 @@
 .embla-y {
   width: 100%;
   margin: auto;
-  margin-top: 30px;
   --slide-height-mobile: 100svh;
   --slide-height: clamp(85svh, 85svh, 85svh);
   --slide-spacing: 1rem;
   --slide-size: 100%;
 }
 
-@media (width <= 1300px) {
+@media (width <= 1400px) {
   .embla-y {
     --slide-height: clamp(95svh, 95svh, 95svh);
   }
@@ -20,7 +19,7 @@
 }
 @media (width <= 800px) {
   .embla-y {
-    --slide-height-mobile: 100svh;
+    --slide-height-mobile: 88svh;
     --slide-height: clamp(95svh, 95svh, 95svh);
   }
 }
@@ -172,7 +171,7 @@
   cursor: pointer;
   border: 0;
   padding: 0;
-  margin: 3px;
+  margin: 3px 0px;
   width: 10px;
   height: 10px;
   display: flex;
