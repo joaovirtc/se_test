@@ -15,15 +15,17 @@ import CaseCard from "@/app/components/system/cards/card-case"
 import { useTranslations } from "next-intl"
 import useIsMobile from "@/app/utils/useIsMobile"
 import BookDemoForm from '../../../../forms/BookDemoForm'
-import { RiExpandDiagonalLine, RiCollapseDiagonalLine, RiHome2Line } from '@remixicon/react'
+import { RiExpandDiagonalLine, RiCollapseDiagonalLine, RiHome2Line, RiGitForkLine } from '@remixicon/react'
 import Button from '@/app/components/system/Button'
 import Link from 'next/link'
+import Image from 'next/image'
+import { usePathname, useRouter } from 'next/navigation';
 
 type Props = {
   slides?: Artifact[]
   options?: EmblaOptionsType
   cases?: Case[]
-  className?:string;
+  className?: string;
   isFullscreen?: boolean
   onExpandClick?: () => void;
   initialSlide?: number;
@@ -32,13 +34,17 @@ type Props = {
 
 const EmblaCarouselArtifacts: React.FC<Props> = (props) => {
   const { slides, options, cases, className, onExpandClick, initialSlide, onSlideChange, isFullscreen } = props
-  const [emblaRed, emblaApi] = useEmblaCarousel(options)
+  const [emblaRed, emblaApi] = useEmblaCarousel(options);
+  const [localizedCollection, setLocalizedCollection] = useState<string>("");
   const [slidesInView, setSlidesInView] = useState<number[]>([])
   const appVersion = getCookie(COOKIE_KEYS.VERSION)
   const isVersionLight = appVersion === "true"
   const t_cases = useTranslations("AboutPage")
   const t_form = useTranslations("FormBookDemo")
-  const isMobile = useIsMobile()
+  const isMobile = useIsMobile();
+  const pathname = usePathname();
+
+
 
   const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi)
 
@@ -48,7 +54,9 @@ const EmblaCarouselArtifacts: React.FC<Props> = (props) => {
     onPrevButtonClick,
     onNextButtonClick
   } = usePrevNextButtons(emblaApi);
- 
+
+
+
   useEffect(() => {
     if (!emblaApi || !onSlideChange) return
 
@@ -81,6 +89,15 @@ const EmblaCarouselArtifacts: React.FC<Props> = (props) => {
     emblaApi.on('slidesInView', updateSlidesInView)
     emblaApi.on('reInit', updateSlidesInView)
   }, [emblaApi, updateSlidesInView])
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const collection = pathname.includes("industries") ? "industries" : "our-products";
+      setLocalizedCollection(collection);
+    }
+  }, [pathname]);
+
+  console.log(pathname)
 
   useEffect(() => {
     if (!emblaApi) return
@@ -215,7 +232,7 @@ const EmblaCarouselArtifacts: React.FC<Props> = (props) => {
                   </p>
                 </div>
                 <div className="hidden sm:block w-full md:w-1/2">
-                  <BookDemoForm formType='Form Site Body'/>
+                  <BookDemoForm formType='Form Site Body' />
                 </div>
                 <div className="block sm:hidden w-full custom_zoom_form">
                   <ToggleFormCarousel />
@@ -243,25 +260,79 @@ const EmblaCarouselArtifacts: React.FC<Props> = (props) => {
           <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
           <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
           {onExpandClick && (
-            <Button 
-              onClick={onExpandClick} 
-              icon={isFullscreen ? <RiCollapseDiagonalLine size={20}/> : <RiExpandDiagonalLine size={20}/>}
+            <Button
+              onClick={onExpandClick}
+              icon={isFullscreen ? <RiCollapseDiagonalLine size={20} /> : <RiExpandDiagonalLine size={20} />}
               variant='tertiary_button'
               aria-label={isFullscreen ? "Close expand view" : "Expand view"}
               title={isFullscreen ? "Close expand view" : "Expand view"}
               className='w-10 h-full ml-1 hidden md:block'
             />
           )}
-          
-          
-          <Link href={"./"} className="flex "> 
+
+
+          <Link href={"./"} className="flex ">
             <Button
               variant='tertiary_button'
               icon={<RiHome2Line size={20} />}
               title={"Back to product overview"}
             />
           </Link>
-          
+
+          {/* <Link href={"../"} className="flex border-l ml-1 pl-1">
+            <Button
+              variant="tertiary_button"
+              icon={
+                localizedCollection === "industries" ? (
+                  <Image
+                    src={""}
+                    alt=""
+                    width={20}
+                    height={20}
+                    className="invert brightness-90"
+                  />
+                ) : (
+                  <Image
+                    src={"https://assets.softexpert.com/Soft_Expert_Suite_branco_6fd43429a1.svg"}
+                    alt=""
+                    width={20}
+                    height={20}
+                    className="invert brightness-90"
+                  />
+                )
+              }
+              title={"View all products"}
+            />
+          </Link> */}
+
+          {localizedCollection === "industries" ? (
+            <Link href={"../"} className='flex border-l border-gray-300 ml-1 pl-1'>
+              <Button
+                variant='tertiary_button'
+                title='View all industries'
+                icon = {<RiGitForkLine size={20}/>}
+              />
+            </Link>
+          ) : (
+            <Link href={"../"} className='flex border-l border-gray-300 ml-1 pl-1'>
+              <Button
+                variant='tertiary_button'
+                title='View all products'
+                icon = {
+                  <Image
+                    src={"https://assets.softexpert.com/Soft_Expert_Suite_branco_6fd43429a1.svg"}
+                    alt="suite-logo-icon"
+                    priority
+                    loading="eager"
+                    width={20}
+                    height={20}
+                    className="invert brightness-90"
+                  />
+                }
+              />
+            </Link>
+          )}
+
 
         </div>
       </div>

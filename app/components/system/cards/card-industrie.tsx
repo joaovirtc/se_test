@@ -55,7 +55,7 @@ export default function CardIndustrie({ link, label, color, bgColor, bgColorSoli
                 <div className={`w-full h-full p-2 3xl:p-3 rounded-xl gap-y-1 flex flex-col justify-between border border-transparent ${bgColorClass} ${className} hover:border hover:border-expertHorizon500`}>
                     <div className="flex gap-x-2">
                         <div className={`hidden md:grid place-items-center rounded-lg w-9 h-9 shrink-0 ${bgColorClassSolid} text-white`}>
-                            <Image src={icon} alt={label} sizes="100%" className="brightness-0 invert" />
+                            <Image src={icon} alt={"icon-industry"} sizes="100%" className="brightness-0 invert" />
                         </div>
                         <div className="flex w-fit gap-x-2 items-center">
                             <h2 title={label} className={`text-base ${colorClass} font-semibold`}>{label}</h2>
